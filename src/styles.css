@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+:root{
+
+    /* Additional Colors */
+    --black: #000;
+    --white: #fff;
+
+    /* Primary Colors */
+    --primaryAccentColor: #85C300;
+    --accentDarkColor: #77AE00;
+
+    /* Text Sizes */
+
+    --defaultFontSize: 16px;
+}
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Product Sans', sans-serif;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
