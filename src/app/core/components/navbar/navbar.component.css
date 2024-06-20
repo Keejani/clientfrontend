@@ -247,6 +247,10 @@ nav{
         overflow-x: scroll;
     }
 
+    .menu-contains{
+        display: flex;
+    }
+
 
 }
 
