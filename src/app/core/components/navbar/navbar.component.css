@@ -90,6 +90,10 @@ nav{
 .menu-contains{
     inline-size: 100%;
     min-block-size: 4.5rem;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.048);
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s all ease;
 }
 
 .loader{
@@ -103,7 +107,10 @@ nav{
     width: 100%;
     height: auto;
     background-color: var(--white);
-    border-bottom: 1.7px solid #000;
+    border-bottom: 1.7px solid #acacac;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.2s all ease;
 }
 
 .menu-list{
@@ -135,6 +142,21 @@ nav{
     gap: 15px;
 }
 
+.menu-list ul li a{
+    color: #acacac;
+    transition:  0.2s all ease;
+    cursor: pointer;
+}
+
+.menu-list ul li a:hover{
+    color: #000;
+}
+
+.menu-list ul li:hover > .menu-contains{
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(7px);
+}
 .containning{
     inline-size: 100%;
     margin: auto;
@@ -143,6 +165,15 @@ nav{
 
 .small{
     display: none;
+}
+
+.menu-opened{
+    opacity: 1;
+    visibility: visible;
+}
+
+.menu-button span{
+    cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {

@@ -5,7 +5,7 @@
         </div>
        <div class="menu-responsive large">
         <div class="menu-button">
-            <span class="material-symbols-outlined">menu</span>
+            <span (click)="menuToggle()" class="material-symbols-outlined">menu</span>
         </div>
         <div class="search-field">
             <input type="search" placeholder="Search" name="" id="">
@@ -35,14 +35,14 @@
     </div>
     <div class="menu-responsive small">
         <div class="menu-button">
-            <span class="material-symbols-outlined">menu</span>
+            <span (click)="menuToggle()" class="material-symbols-outlined">menu</span>
         </div>
         <div class="search-field">
             <span class="material-symbols-outlined">search</span>
             <input type="search" placeholder="Search" name="" id="">
         </div>
     </div>
-    <div class="menuItems">
+    <div [ngClass]="{'menu-opened' : menuOpened}"  class="menuItems">
         <div class="menu-list">
             <ul>
                 <li><a>Home</a></li>
