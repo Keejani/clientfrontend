@@ -13,6 +13,10 @@
     --defaultFontSize: 16px;
 }
 
+::selection{
+    background-color: var(--primaryAccentColor);
+}
+
 *{
     padding: 0;
     margin: 0;

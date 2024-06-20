@@ -1,1 +1,53 @@
-<p>hero works!</p>
+<div class="hero">
+    <div class="container">
+        <img src="" alt="">
+        <div class="main">
+            <div class="caption">
+                <h1>Your No.1 Waste Platform for all Industries.</h1>
+            </div>
+            <div class="slider">
+                <ngx-glide [options]="glideOptions">
+                    @for (item of listOfCards; track $index) {
+                        <ngx-glide-slide>
+                            <div class="card">
+                                <img src="" alt="">
+                                <div class="captions">
+                                    <span>{{item.title}}</span>
+                                    <span>{{item.subtitle}}</span>
+                                </div>
+                            </div>
+                        </ngx-glide-slide>
+                    }
+                  
+                    <!-- <ngx-glide-arrows>
+                      <ngx-glide-arrow type="prev"></ngx-glide-arrow>
+                      <ngx-glide-arrow type="next"></ngx-glide-arrow>
+                    </ngx-glide-arrows> -->
+                  
+                    <!-- <ngx-glide-bullets>
+                      <ngx-glide-bullet *ngFor="let i of [0,1,2,3]; let idx = index" [index]="idx"></ngx-glide-bullet>
+                    </ngx-glide-bullets> -->
+                  </ngx-glide>
+                  
+            </div>
+            <div class="ctas">
+                <div class="profiles">
+                    <div class="cap">
+                        <span>Our Top retailer</span>
+                        <span>Sell here.</span>
+                    </div>
+                    <div class="users">
+                        <span>U1</span>
+                        <span>U2</span>
+                        <span>U3</span>
+                        <span>U4</span>
+                    </div>
+                </div>
+                <span class="material-symbols-outlined arrow">arrow_downward</span>
+                <div class="cta">
+                    <span>Get Started</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
