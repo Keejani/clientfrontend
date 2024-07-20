@@ -1,0 +1,21 @@
+<div class="all-kinds" [style.backgroundImage]="getBackgroundStyle()">
+    <div class="container">
+        <div class="top-items">
+            <div class="caption">
+                <h2>Keejani</h2>
+                <span class="caption-subtitle">Visit the Market for all kinds of clean recycleables.</span>
+                <button>The Retail Market <span class="material-symbols-outlined">store</span></button>
+            </div>
+            <div class="image-manual-carousel">
+                <img src="{{imageCarousel()}}" alt="">
+            </div>
+        </div>
+        <div class="carousel-indicator">
+            <div class="carousel-container">
+                @for (item of kinds; track $index) {
+                    <span [ngClass]="{'activeButton' : item.selected, 'unactiveButton' : !item.selected}" (click)="item.function()">{{item.name}}</span>
+                }
+            </div>
+        </div>
+    </div>
+</div>
