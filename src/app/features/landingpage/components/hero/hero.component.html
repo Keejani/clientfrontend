@@ -34,13 +34,11 @@
                 <div class="profiles">
                     <div class="cap">
                         <span>Our Top retailer</span>
-                        <span>Sell here.</span>
                     </div>
                     <div class="users">
-                        <span>U1</span>
-                        <span>U2</span>
-                        <span>U3</span>
-                        <span>U4</span>
+                        @for (item of TopRetailers; track $index) {
+                            <span><img src={{item}} alt=""></span>
+                        }
                     </div>
                 </div>
                 <div class="cta">
