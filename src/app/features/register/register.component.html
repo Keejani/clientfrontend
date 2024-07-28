@@ -1,1 +1,28 @@
-<p>register works!</p>
+<div class="register">
+    <div class="logo point" [routerLink]="['']">
+        <img src="../../../assets/logo.svg" alt="Keejani">
+        <span>Keejani</span>
+    </div>
+    <div class="container">
+        <span id="login">Create your account</span>
+        <div class="form">
+            <form>
+                <div class="input">
+                    <label for="email">With email</label>
+                    <app-generalinpu-one type="email" placeholder="username@email.com" [inputStyle]="style"/>
+                </div>
+            </form>
+        </div>
+        <div class="divider">
+            <hr>
+            <span>Or</span>
+            <hr>
+        </div>
+        <div class="oauth">
+            <app-general-oauth-button [buttonStyle]="oAuthButtonStyle" image="../../../assets/search.png" label="Sign In with Google" />
+        </div>
+        <div class="sigin">
+            <span class="point" [routerLink]="['../login']">Sign In</span>
+        </div>
+    </div>
+</div>
