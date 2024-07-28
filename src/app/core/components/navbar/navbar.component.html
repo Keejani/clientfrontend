@@ -21,15 +21,18 @@
                 <div class="cart">
                     <span class="material-symbols-outlined">shopping_cart</span>
                 </div>
-                <div class="user-profile">
-                    <span class="profile">
-                        @if(false){
+                @if(false){
+                        <div class="user-profile">
+                        <span class="profile">
                           <span class="identity">PA</span>
-                        } @else{
-                           <span class="material-symbols-outlined">person</span>
-                        }
-                   </span>
-                </div>
+                        </span>
+                    </div>
+                    } @else{
+                        <div [routerLink]="['login']" class="login">
+                            <span>Login</span>
+                            <span class="material-symbols-outlined">login</span>
+                        </div>
+                }
             </div>
         </div>
     </div>

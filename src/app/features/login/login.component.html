@@ -1,0 +1,34 @@
+<div class="login">
+    <div class="container">
+        <div class="logo point" [routerLink]="['']">
+            <img src="../../../assets/logo.svg" alt="Keejani">
+            <!-- <span>Keejani</span> -->
+        </div>
+        <span id="login">Login</span>
+        <div class="form">
+            <form>
+                <div class="input">
+                    <label for="email">Email</label>
+                    <app-generalinpu-one type="email" placeholder="Email" [inputStyle]="style"/>
+                </div>
+                <div class="input">
+                    <label for="email">Password</label>
+                    <app-generalinpu-one type="email" placeholder="•••••••••" [inputStyle]="style"/>
+                </div>
+            </form>
+            <app-generalbutton class="point" [buttonStyle]="buttonStyle" label="Login" [action]="login"/>
+            <span  routerLink="../forgot-password" class="forgot-password point">forgot password?</span>
+            <div class="divider">
+                <hr>
+                <span>Or</span>
+                <hr>
+            </div>
+            <div class="oauth">
+                <app-general-oauth-button [buttonStyle]="oAuthButtonStyle" image="../../../assets/search.png" label="Sign In with Google" />
+            </div>
+        </div>
+        <div class="register">
+            <span class="point" [routerLink]="['../register']">Register</span>
+        </div>
+    </div>
+</div>

@@ -30,3 +30,8 @@ body{
     box-sizing: border-box;
 }
 
+
+
+.point{
+    cursor: pointer;
+}

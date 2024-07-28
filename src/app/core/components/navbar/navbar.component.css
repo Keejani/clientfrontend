@@ -50,7 +50,7 @@ nav{
     justify-content: center;
     align-items: center;
     gap: 10px;
-    padding: 8px 20px;
+    padding: 7px 20px;
     background-color: var(--black);
     color: var(--white);
     border-radius: 50px;
@@ -175,6 +175,26 @@ nav{
 
 .menu-button span{
     cursor: pointer;
+}
+
+.login{
+    width: 7rem;
+    height: 2.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 30px;
+    gap: 10px;
+    cursor: pointer;
+}
+.login span{
+    width: auto;
+}
+
+.login .material-symbols-outlined{
+    font-size: 19px;
 }
 
 @media screen and (max-width: 900px) {
