@@ -24,7 +24,7 @@ export class GeneralinpuOneComponent implements ControlValueAccessor {
     'background-color': 'rgba(187, 187, 187, 0.18)',
     'outline': '0',
     'border': '0',
-    'border-radius': '8px',
+    'border-radius': '0',
     'height': '30px',
     'padding': '0 10px',
     'font-size' : '17px',

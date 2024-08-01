@@ -3,6 +3,7 @@ import { LandingpageComponent } from '../features/landingpage/landingpage.compon
 import { LoginComponent } from '../features/login/login.component';
 import { RegisterComponent } from '../features/register/register.component';
 import { ForgotPasswordComponent } from '../features/forgot-password/forgot-password.component';
+import { AuthorizationComponent } from '../auth/authorization/authorization.component';
 
 export const routes: Routes = [
     {
@@ -23,5 +24,10 @@ export const routes: Routes = [
         path : 'forgot-password',
         component: ForgotPasswordComponent,
         title: 'Reclaim your account..'
+    },
+    {
+        path : 'authorization',
+        component: AuthorizationComponent,
+        title: 'Authorizing request..'
     }
 ];

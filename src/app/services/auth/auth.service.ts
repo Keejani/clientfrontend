@@ -21,6 +21,10 @@ export class AuthService {
     return this.http.post(API_BASE_URL + `/api/v1/auth/register`, registerUser);
   }
 
+  refreshToken(){
+    
+  }
+
   authorizeOAuth(generalId :GeneralId){
     return this.http.post(API_BASE_URL + `/api/v1/auth/general-verification`, generalId, {headers: this.headers});
   }

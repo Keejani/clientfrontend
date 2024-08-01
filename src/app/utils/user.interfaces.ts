@@ -13,3 +13,10 @@ export interface RegisterUser extends LoginUser{
 export interface GeneralId {
     Id : string
 }
+
+export interface User {
+    firstName : string;
+    lastName : string;
+    email : string;
+    cartId : string;
+}

@@ -20,18 +20,43 @@
             <div class="cart-profile">
                 <div class="cart">
                     <span class="material-symbols-outlined">shopping_cart</span>
+                    <span class="item-count">{{cartItem}}</span>
                 </div>
-                @if(false){
-                        <div class="user-profile">
+                
+                @if(isLoggedIn()){
+                    <div class="user-profile">
                         <span class="profile">
-                          <span class="identity">PA</span>
+                            <span (click)="toggleDropDown()" class="identity">{{userData.firstName.substring(0, 1) + userData.lastName.substring(0, 1) }}</span>
+                            @if(profileToggle){
+                                <!-- Dropdown menu -->
+            <div id="userDropdown" class="profile-dropdown bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div>{{userData.firstName + " " + userData.lastName}}</div>
+            <div class="font-medium truncate">{{userData.email}}</div>
+            </div>
+            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+            <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Dashboard</a>
+            </li>
+            <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Settings</a>
+            </li>
+            <li>
+            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Earnings</a>
+            </li>
+            </ul>
+            <div class="py-1">
+            <a (click)="logout()" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+            </div>
+            </div>
+                              }
                         </span>
                     </div>
-                    } @else{
-                        <div [routerLink]="['login']" class="login">
-                            <span>Login</span>
-                            <span class="material-symbols-outlined">login</span>
-                        </div>
+                } @else{
+                    <div [routerLink]="['login']" class="login">
+                        <span>Login</span>
+                        <span class="material-symbols-outlined">login</span>
+                    </div>
                 }
             </div>
         </div>

@@ -197,6 +197,24 @@ nav{
     font-size: 19px;
 }
 
+.profile{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#userDropdown{
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    right: 15%;
+}
+
+.profile-dropdown{
+    /* right: -220px; */
+}
+
 @media screen and (max-width: 900px) {
     .container{
         padding: 5px 20px;
@@ -285,4 +303,24 @@ nav{
     .nav {
         min-block-size: 3.5rem;
     }
+}
+
+.cart{
+    position: relative;
+}
+
+.cart .item-count{
+    font-size: 12px;
+    position: absolute;
+    width: 17px;
+    height: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: -10px;
+    top: -7px;
+    color: #fff;
+    border-radius: 40px;
+    background-color: var(--primaryAccentColor);
+    outline: 3px solid #fff;
 }
