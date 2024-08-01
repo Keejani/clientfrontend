@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-all-kinds',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterLink],
   templateUrl: './all-kinds.component.html',
   styleUrl: './all-kinds.component.css'
 })

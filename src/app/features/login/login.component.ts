@@ -3,6 +3,7 @@ import { GeneralinpuOneComponent } from '../components/generalinpu-one/generalin
 import { GeneralbuttonComponent } from '../components/generalbutton/generalbutton.component';
 import { GeneralOAuthButtonComponent } from '../components/general-oauth-button/general-oauth-button.component';
 import { RouterLink } from '@angular/router';
+import { OAuth2Google } from '../../utils/api.constant';
 
 @Component({
   selector: 'app-login',
@@ -55,6 +56,11 @@ export class LoginComponent {
 
   login(){
     console.log("Login")
+  }
+
+  googleOAuth(){
+    console.log("Works!")
+    window.location.href= OAuth2Google;
   }
 
 }
