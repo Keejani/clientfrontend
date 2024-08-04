@@ -1,10 +1,23 @@
 <div class="product-card">
     <div class="container">
-        <div class="image"></div>
+        <div class="image">
+            <img src="https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060" alt="">
+        </div>
         <div class="product-details">
             @if (true) {
                 <span class="product-name">Product Name</span>
                 <app-generalinpu-one placeholder="Bargin" />
+                <span class="bargains">Start Bargain: </span>
+                <span class="bargains">Competing Bargain: </span>
+                <div class="support">
+                    <div class="support">
+                        <span>Vendor Supports:</span>
+                        @for (item of supports; track $index) {
+                            <span class="material-symbols-outlined"></span>
+                        }
+                    </div>
+                    <span class="bookmark material-symbols-outlined">bookmark</span>
+                </div>
             }
         </div>
     </div>

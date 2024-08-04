@@ -1,0 +1,45 @@
+image: node:20-alpine
+
+stages:
+  - install_dependencies
+  - build
+  - deploy
+
+variables:
+  SSH_USER: pandit_alabi
+  SERVER_IP: 35.237.106.254
+  DEPLOY_PATH: /home/pandit_alabi/clientFrontend
+  PRIVATE_KEY_PATH:  /builds/pandit.alabi/cotenant/my-gcp-key
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install_dependencies
+  script:
+    - npm ci
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+      - deploy_key
+
+deploy:
+  stage: deploy
+  image: node:20-alpine
+  before_script:
+    - apk add --no-cache openssh-client
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - chmod 400 $PRIVATE_KEY_PATH
+    - eval $(ssh-agent -s)
+    - scp -r -i $PRIVATE_KEY_PATH dist/* $SSH_USER@$SERVER_IP:$DEPLOY_PATH/temp_dist
+    - ssh -i $PRIVATE_KEY_PATH  $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"

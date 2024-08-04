@@ -10,4 +10,8 @@ import { GeneralinpuOneComponent } from '../../components/generalinpu-one/genera
 })
 export class ProductCardComponent {
 
+  supports : Array<any> = [
+    "delivery"
+  ]
+
 }

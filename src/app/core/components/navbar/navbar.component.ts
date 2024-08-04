@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../utils/user.interfaces';
@@ -14,7 +14,7 @@ import { cartItems } from '../../../utils/cart.interface';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent implements OnInit{
+export class NavbarComponent implements OnInit, AfterViewInit{
 
   constructor(private auth : AuthService, private router: Router, private cart : CartCrudService, private user : UserCrudService){}
 
@@ -27,6 +27,10 @@ export class NavbarComponent implements OnInit{
   ngOnInit(): void {
     this.getUserData();
     this.getCartItems();
+  }
+
+  ngAfterViewInit(): void {
+    this.getUserData();
   }
 
   getCartItems(){
