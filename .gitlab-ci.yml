@@ -41,5 +41,5 @@ deploy:
   script:
     - chmod 400 $PRIVATE_KEY_PATH
     - eval $(ssh-agent -s)
-    - scp -r -i $PRIVATE_KEY_PATH dist/* $SSH_USER@$SERVER_IP:$DEPLOY_PATH/temp_dist
+    - scp -r -i $PRIVATE_KEY_PATH dist/* $SSH_USER@$SERVER_IP:$DEPLOY_PATH/dist
     - ssh -i $PRIVATE_KEY_PATH  $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"
