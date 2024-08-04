@@ -8,7 +8,7 @@ stages:
 variables:
   SSH_USER: pandit_alabi
   SERVER_IP: 35.237.106.254
-  DEPLOY_PATH: /home/pandit_alabi/clientFrontend
+  DEPLOY_PATH: /home/pandit_alabi/clientfrontend
   PRIVATE_KEY_PATH:  /builds/devs1632222/Keejani/my-gcp-key
 
 cache:
