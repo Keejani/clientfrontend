@@ -9,7 +9,7 @@ variables:
   SSH_USER: pandit_alabi
   SERVER_IP: 35.237.106.254
   DEPLOY_PATH: /home/pandit_alabi/clientFrontend
-  PRIVATE_KEY_PATH:  /builds/pandit.alabi/cotenant/my-gcp-key
+  PRIVATE_KEY_PATH:  /builds/devs1632222/Keejani/my-gcp-key
 
 cache:
   paths:
