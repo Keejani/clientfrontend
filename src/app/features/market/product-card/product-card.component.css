@@ -139,14 +139,38 @@
     align-items: center;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 450px) {
 
     .product-card{
-        max-width: 17rem;
+        width: 100%;
+        max-width: none;
     }
 
     .image, .image img{
         width: 100%;
+        height: 10rem;
+        min-width: none;
+    }
+
+    .container{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .cart-buttons{
+        display: none;
+    }
+}
+
+@media screen and  (min-width: 451px) and (max-width: 900px) {
+
+    .product-card{
+        max-width: 20rem;
+    }
+
+    .image, .image img{
+        width: 100%;
+        height: 10rem;
         min-width: none;
     }
 
