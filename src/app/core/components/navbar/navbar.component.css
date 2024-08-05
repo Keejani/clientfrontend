@@ -94,6 +94,7 @@ nav{
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.048);
     opacity: 0;
     visibility: hidden;
+    display: none;
     transition: 0.2s all ease;
 }
 
@@ -306,6 +307,7 @@ nav{
 }
 
 .cart{
+    cursor: pointer;
     position: relative;
 }
 

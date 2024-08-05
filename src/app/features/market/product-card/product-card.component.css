@@ -1,6 +1,11 @@
 .product-card{
-    width: 25rem;
-    /* height: 10rem; */
+    width: auto;
+    max-width: 38rem;
+    /* max-height: 19rem; */
+    /* height: 16rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .container{
@@ -9,11 +14,26 @@
     background-color: #fff;
     display: flex;
     padding: 10px;
+    gap: 20px;
 }
 
 .image{
-    width: 15rem;
+    width: 19rem;
     height: 100%;
+    /* min-height: 20rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image img{
+    height: 100%;
+    width: 100%;
+    /* min-height: 15rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
 }
 
 .bargains{
@@ -21,11 +41,24 @@
     /* justify-content: center; */
     align-items: center;
     width: 100%;
-    height: 2.5rem;
+    height: 2rem;
     min-height: 2rem;
-    padding: 0 20px;
+    padding: 0 10px;
     border: 1.5px solid #000;
     font-size: 13px;
+    gap: 10px;
+}
+
+.bargains .material-symbols-outlined{
+    font-size: 17px;
+}
+
+.bargains:first-child {
+    color: rgb(120, 120, 120);
+}
+
+.bargains:last-child {
+    color: rgb(19, 164, 0);
 }
 
 .product-details{
@@ -37,16 +70,71 @@
 .bookmark{
     width: 30px;
     height: 30px;
+    min-width: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1.5px solid #000;
     border-radius: 40px;
     font-size: 15px;
+    cursor: pointer;
 }
 
 .support{
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.support-container{
+    background-color: #000;
+    border-radius: 30px;
+    padding: 0 20px;
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+}
+
+.support-container .title{
+    font-size: 12px;
+    color: #fff;
+}
+
+.product-name{
+    width: 15rem;
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;       /* Prevents text from wrapping to the next line */
+    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    text-overflow: ellipsis;
+}
+
+.cart-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.description{
+    width: 15rem;
+    font-size: 14px;
+    font-weight: 300;
+    white-space: nowrap;       /* Prevents text from wrapping to the next line */
+    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    text-overflow: ellipsis;
+}
+
+
+
+.bargainning{
+    display: flex;
+    justify-content: center;
     align-items: center;
 }

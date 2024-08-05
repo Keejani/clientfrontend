@@ -4,6 +4,7 @@ import { LoginComponent } from '../features/login/login.component';
 import { RegisterComponent } from '../features/register/register.component';
 import { ForgotPasswordComponent } from '../features/forgot-password/forgot-password.component';
 import { AuthorizationComponent } from '../auth/authorization/authorization.component';
+import { CartComponent } from '../features/market/cart/cart.component';
 
 export const routes: Routes = [
     {
@@ -29,5 +30,9 @@ export const routes: Routes = [
         path : 'authorization',
         component: AuthorizationComponent,
         title: 'Authorizing request..'
+    },
+    {
+        path: 'cart',
+        component : CartComponent
     }
 ];
