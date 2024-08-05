@@ -138,3 +138,23 @@
     justify-content: center;
     align-items: center;
 }
+
+@media screen and (max-width: 900px) {
+
+    .product-card{
+        max-width: 17rem;
+    }
+
+    .image, .image img{
+        width: 100%;
+        min-width: none;
+    }
+
+    .container{
+        flex-direction: column;
+    }
+
+    .cart-buttons{
+        display: none;
+    }
+}
