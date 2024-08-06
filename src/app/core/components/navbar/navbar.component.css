@@ -112,6 +112,7 @@ nav{
     border-bottom: 1.7px solid #acacac;
     opacity: 0;
     visibility: hidden;
+    display: none;
     transition: 0.2s all ease;
 }
 
@@ -172,6 +173,7 @@ nav{
 .menu-opened{
     opacity: 1;
     visibility: visible;
+    display: flex;
 }
 
 .menu-button span{
@@ -307,6 +309,9 @@ nav{
 @media screen and (max-width: 65.938rem) {
     .nav {
         min-block-size: 3.5rem;
+    }
+    .login:first-child{
+        display: none;
     }
 }
 
