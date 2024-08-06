@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { GeneralinpuOneComponent } from '../../components/generalinpu-one/generalinpu-one.component';
 import { GeneralAddToCartbuttonComponent } from "../components/generaladdtocartbutton/generaladdtocartbutton.component";
 import { GeneralbuybuttonComponent } from "../components/generalbuybutton/generalbuybutton.component";
@@ -12,6 +12,8 @@ import { RatingsComponent } from "../components/ratings/ratings.component";
   styleUrl: './product-card.component.css'
 })
 export class ProductCardComponent {
+
+  @Input() product : any;
 
   supports : Array<any> = [
     "delivery"

@@ -1,1 +1,12 @@
-<app-product-card/>
+<div class="products-fetch">
+    <div class="container">
+        <div class="describtion">
+            <span>Search type</span>
+        </div>
+        <div class="list-of-products" #scrollContainer>
+            @for (item of products; track $index) {
+                <app-product-card [product]="item" />
+            }
+        </div>
+    </div>
+</div>

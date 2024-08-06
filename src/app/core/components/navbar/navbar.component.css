@@ -297,6 +297,10 @@ nav{
         transform: translateY(30px);
     }
 
+    .login:first-child{
+        display: none;
+    }
+
 
 }
 

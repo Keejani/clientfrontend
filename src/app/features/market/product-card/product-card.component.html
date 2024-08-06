@@ -4,18 +4,18 @@
             <img src="https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060" alt="">
         </div>
         <div class="product-details">
-            @if (true) {
-                <span class="product-name">Product Name, Off good</span>
+            @if (product.purchaseType) {
+                <span class="product-name">{{product.name}}</span>
                 <app-generalinpu-one placeholder="Bargin" />
                 <div class="bargainning">
-                    <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>$200 </span>
-                    <span class="bargains"><span class="material-symbols-outlined">trending_up</span> $2309 </span>
+                    <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>${{product.startBargain}}</span>
+                    <span class="bargains"><span class="material-symbols-outlined">trending_up</span> ${{product.currentBargain}}</span>
                 </div>
                 <div class="support">
                     <div class="support-container">
                         <span class="title">Vendor Supports:</span>
-                        @for (item of supports; track $index) {
-                            <span class="material-symbols-outlined"></span>
+                        @for (item of product.support; track $index) {
+                            <span class="material-symbols-outlined">{{item}}</span>
                         }
                     </div>
                     <span class="bookmark material-symbols-outlined">bookmark</span>
@@ -28,7 +28,7 @@
                     <app-ratings/>
                 </div>
             } @else {
-                <span class="product-name">Product Name, of good quality</span>
+                <span class="product-name">{{product.name}}</span>
                 <span class="description">Lorem ipsum dolor sit amet consectetur. Malesuada nec sit eget ipsum ac ut egestas sit. At elementum justo in diam amet a.</span>
                 <div class="support">
                     <div class="support-container">
