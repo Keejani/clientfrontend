@@ -124,4 +124,12 @@ hr{
         padding: 0 10px;
         flex-direction: column;
     }
+
+    .cart-items{
+        width: 100%;
+    }
+
+    .card{
+        flex-direction: column;
+    }
 }
