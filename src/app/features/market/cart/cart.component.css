@@ -127,6 +127,7 @@ hr{
 
     .cart-items{
         width: 100%;
+        gap: 20px;
     }
 
     hr{
@@ -136,5 +137,6 @@ hr{
 
     .card{
         flex-direction: column;
+        gap: 20px;
     }
 }
