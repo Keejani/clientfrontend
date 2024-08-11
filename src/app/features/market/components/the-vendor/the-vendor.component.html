@@ -1,0 +1,51 @@
+<div class="the-vendor">
+    <div class="describtion">
+        <span>Vendor</span>
+    </div>
+    <div class="container">
+        <div class="top">
+            <div class="vendor-details">
+                <span class="profile">
+                    @if (false) {
+                        <img src="" alt="">
+                    }
+                     @else {
+                        <span class="material-symbols-outlined">person</span>
+                     }
+                </span>
+                <div class="name-details">
+                    <span>Shop Name</span>
+                    <span>Owner's Name</span>
+                </div>
+                <app-ratings/>
+            </div>
+            <div class="categories">
+                <span class="title">Categories:</span>
+                <span class="category-name">Category</span>
+            </div>
+            <div class="supports">
+                <span class="title">Supports:</span>
+                <span class="services material-symbols-outlined">local_shipping</span>
+            </div>
+        </div>
+        <div class="items no-scroll-bar">
+            @for (item of vendorItems; track $index) {
+                <div class="card">
+                    <div class="image">
+                        <img src="{{item.img}}" alt="">
+                    </div>
+                    @if (item.bargain) {
+                        <div class="price-container">
+                            <span class="material-symbols-outlined">trending_up</span>
+                            <span class="price">$40,394.00</span>
+                        </div>
+                    } @else {
+                        <div class="price-container">
+                            <span class="price">price: $3023.00</span>
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+</div>
