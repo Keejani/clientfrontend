@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-top-panel',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './top-panel.component.html',
   styleUrl: './top-panel.component.css'
 })

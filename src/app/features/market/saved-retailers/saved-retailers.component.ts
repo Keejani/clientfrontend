@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
-import { TopPanelComponent } from "../components/top-panel/top-panel.component";
-import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
 import { SubTotalComponent } from "../components/sub-total/sub-total.component";
 import { GeneralbuttonComponent } from "../../components/generalbutton/generalbutton.component";
+import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
+import { TopPanelComponent } from "../components/top-panel/top-panel.component";
+import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
 
 @Component({
-  selector: 'app-cart',
+  selector: 'app-saved-retailers',
   standalone: true,
-  imports: [NavbarComponent, TopPanelComponent, ProductsFetchComponent, SubTotalComponent, GeneralbuttonComponent],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css'
+  imports: [SubTotalComponent, GeneralbuttonComponent, ProductsFetchComponent, TopPanelComponent, NavbarComponent],
+  templateUrl: './saved-retailers.component.html',
+  styleUrl: './saved-retailers.component.css'
 })
-export class CartComponent {
+export class SavedRetailersComponent {
 
   buttonStyle = {
     'width' : '100%',

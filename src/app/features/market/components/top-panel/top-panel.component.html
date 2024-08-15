@@ -1,10 +1,10 @@
 <div class="top-panel">
     <div class="container">
         <div class="bargains">
-            <span>Bargains: 4</span>
+            <span [routerLink]="['/bagains']" >Bargains: 4</span>
         </div>
         <div class="saved-retailers">
-            <span>Saved Retailers: </span>
+            <span [routerLink]="['/saved-retailers']">Saved Retailers: </span>
             <div class="retailers no-scroll-bar" #scrollContainer>
                 @for (item of savedRetailers; track $index) {
                     <div class="cards" >

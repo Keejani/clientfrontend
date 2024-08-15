@@ -5,6 +5,8 @@ import { RegisterComponent } from '../features/register/register.component';
 import { ForgotPasswordComponent } from '../features/forgot-password/forgot-password.component';
 import { AuthorizationComponent } from '../auth/authorization/authorization.component';
 import { CartComponent } from '../features/market/cart/cart.component';
+import { BargainsComponent } from '../features/market/bargains/bargains.component';
+import { SavedRetailersComponent } from '../features/market/saved-retailers/saved-retailers.component';
 
 export const routes: Routes = [
     {
@@ -34,5 +36,13 @@ export const routes: Routes = [
     {
         path: 'cart',
         component : CartComponent
+    },
+    {
+        path: 'bagains',
+        component : BargainsComponent
+    },
+    {
+        path: 'saved-retailers',
+        component : SavedRetailersComponent
     }
 ];

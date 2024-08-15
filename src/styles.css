@@ -79,6 +79,21 @@ body{
 }
 
 
+@media screen and (max-width: 900px) {
+    .empty-cart{
+        height: 300px;
+        flex-direction: column;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .empty-cart h2{
+        font-size: 5svw;
+        text-align: center
+    }
+}
+
+
 /* Tailwind */
 
 @tailwind base;

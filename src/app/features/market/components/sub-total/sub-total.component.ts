@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GeneralbuttonComponent } from "../../../../components/generalbutton/generalbutton.component";
+import { GeneralbuttonComponent } from "../../../components/generalbutton/generalbutton.component";
 
 @Component({
   selector: 'app-sub-total',
