@@ -28,6 +28,25 @@
     gap: 30px;
 }
 
+.checkbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.status{
+    height: 20px;
+    padding: 5px 10px;
+    background-color: #0072C5;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .head{
     display: flex;
     justify-content: space-between;
