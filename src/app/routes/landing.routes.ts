@@ -7,6 +7,8 @@ import { AuthorizationComponent } from '../auth/authorization/authorization.comp
 import { CartComponent } from '../features/market/cart/cart.component';
 import { BargainsComponent } from '../features/market/bargains/bargains.component';
 import { SavedRetailersComponent } from '../features/market/saved-retailers/saved-retailers.component';
+import { ProductPageComponent } from '../features/market/product-page/product-page.component';
+import { VendorPageComponent } from '../features/market/main/vendor-page/vendor-page.component';
 
 export const routes: Routes = [
     {
@@ -44,5 +46,13 @@ export const routes: Routes = [
     {
         path: 'saved-retailers',
         component : SavedRetailersComponent
-    }
+    },
+    {
+        path: 'products',
+        component: ProductPageComponent
+    },
+    {
+        path: 'vendor-page',
+        component: VendorPageComponent
+    },
 ];

@@ -1,6 +1,6 @@
 <div class="product-card">
     <div class="container">
-        <div class="image">
+        <div class="image" [routerLink]="['/products']">
             <img src="https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060" alt="">
         </div>
         <div class="product-details">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="cart-buttons">
                     <app-generaladdtocartbutton class="cart"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
-                    <app-generalbuybutton label="Buy" [buttonStyle]="addBuyButtonStyle"/>
+                    <app-generalbuybutton label="Bagain" [buttonStyle]="addBuyButtonStyle"/>
                 </div>
                 <div class="ratings">
                     <app-ratings/>

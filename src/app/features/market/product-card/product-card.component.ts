@@ -3,11 +3,12 @@ import { GeneralinpuOneComponent } from '../../components/generalinpu-one/genera
 import { GeneralAddToCartbuttonComponent } from "../components/generaladdtocartbutton/generaladdtocartbutton.component";
 import { GeneralbuybuttonComponent } from "../components/generalbuybutton/generalbuybutton.component";
 import { RatingsComponent } from "../components/ratings/ratings.component";
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [GeneralinpuOneComponent, GeneralAddToCartbuttonComponent, GeneralbuybuttonComponent, RatingsComponent],
+  imports: [RouterLink, GeneralinpuOneComponent, GeneralAddToCartbuttonComponent, GeneralbuybuttonComponent, RatingsComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })

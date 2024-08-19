@@ -160,6 +160,7 @@ hr{
     .container{
         padding: 0 10px;
         flex-direction: column;
+        gap: 30px;
     }
 
     .cart-items{

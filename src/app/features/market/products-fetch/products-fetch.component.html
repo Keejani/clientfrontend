@@ -3,10 +3,13 @@
         <div class="describtion">
             <span>Search type</span>
         </div>
-        <div class="list-of-products" #scrollContainer>
-            @for (item of products; track $index) {
-                <app-product-card [product]="item" />
-            }
+        <div class="list-of-products">
+            <!-- <ngx-glide  [options]="glideOptions"> -->
+                @for (item of products; track $index) {
+                <!-- <ngx-glide-slide> -->
+                        <app-product-card [product]="item" />
+                    <!-- </ngx-glide-slide> -->
+                }
         </div>
     </div>
 </div>

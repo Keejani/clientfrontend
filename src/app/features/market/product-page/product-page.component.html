@@ -1,0 +1,101 @@
+<app-navbar/>
+<app-top-panel/>
+
+<!-- product-detail.component.html -->
+<div class="product-detail">
+    <h1 class="product-name">{{product.name}}</h1>
+    <p class="product-purpose">{{product.purpose}}</p>
+  
+    <div class="product-image-carousel">
+        <ngx-glide [options]="glideOptions">
+            @for (item of listOfCards; track $index) {
+                <ngx-glide-slide>
+                    <div class="card">
+                        <img src="{{item.img}}" alt="">
+                    </div>
+                </ngx-glide-slide>
+            }
+<!--           
+            <ngx-glide-arrows>
+              <ngx-glide-arrow type="prev"></ngx-glide-arrow>
+              <ngx-glide-arrow type="next"></ngx-glide-arrow>
+            </ngx-glide-arrows> 
+          
+             <ngx-glide-bullets>
+              <ngx-glide-bullet *ngFor="let i of listOfCards; let idx = index" [index]="idx"></ngx-glide-bullet>
+            </ngx-glide-bullets> -->
+          </ngx-glide>
+    </div>
+  
+    <div class="bidding-section">
+      <div class="bid-info">
+        <div class="info">
+            <p>Initial Bid: </p><span>{{product.currency}} {{product.initialBid}}</span>
+        </div>
+        <div class="info">
+            <p>Current Bid:</p><span>{{product.currency}} {{product.initialBid}}</span>
+        </div>
+      </div>
+      <hr>
+      <input type="number" placeholder="How much to bid?">
+      <div class="bid-actions">
+        <button class="save-button">Save for later</button>
+        <button class="cart-button">Add to cart</button>
+        <button class="bid-button" (click)="placeBid()">Place Bid</button>
+      </div>
+    </div>
+  
+    <div class="vendor-section">
+      <div class="vendor-info">
+        <img [src]="vendor.image" alt="{{vendor.name}}">
+        <p>{{vendor.name}}</p>
+      </div>
+      <div class="vendor-supports">
+        <span>Supports</span>
+        <span class="material-symbols-outlined icon">local_shipping</span>
+        <span class="material-symbols-outlined icon">package</span>
+      </div>
+      <button class="shop-button">Go to Shop</button>
+    </div>
+  
+    <div class="product-details">
+      <h2>Details</h2>
+      <div class="detail-item">
+        <span>Type</span>
+        <span class="type-badge">{{product.type}}</span>
+      </div>
+      <div class="detail-item">
+        <span>Recycle Grade</span>
+        <span class="recycle-grade">{{product.recycleGrade}}</span>
+      </div>
+    </div>
+  
+    <div class="product-description">
+      <h2>Description</h2>
+      <p>{{product.description}}</p>
+    </div>
+
+    <!-- reviews.component.html -->
+<div class="reviews-container">
+    <div class="reviews-header">
+      <h2>Reviews</h2>
+      <div class="rating">{{rating}} ★★★★★</div>
+      <div class="total-reviews">Total: {{totalReviews}}</div>
+      <button class="add-review">Add Review</button>
+    </div>
+    <div class="reviews-list">
+      <div *ngFor="let review of reviews" class="review-item">
+        <div class="user-avatar"></div>
+        <div class="review-content">
+          <h3>{{review.username}}</h3>
+          <p class="review-date">{{review.date}}</p>
+          <p>{{review.content}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+
+<app-products-fetch/>
