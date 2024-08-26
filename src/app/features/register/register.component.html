@@ -1,7 +1,7 @@
 <div class="register">
     <div class="logo point" [routerLink]="['']">
-        <img src="../../../assets/logo.svg" alt="Keejani">
-        <span>Keejani</span>
+        <img src="../../../assets/logo2.svg" alt="Keejani">
+        <!-- <span>Keejani</span> -->
     </div>
     <div class="container">
         <span id="login">Create your account</span>
@@ -9,7 +9,8 @@
             <form>
                 <div class="input">
                     <label for="email">With email</label>
-                    <app-generalinpu-one type="email" placeholder="username@email.com" [inputStyle]="style"/>
+                    <app-generalinpu-one [(ngModel)]="email" name="email" type="email" placeholder="username@email.com" [inputStyle]="style"/>
+                    <app-generalbutton [routerLink]="['/register-email']" label="Register with email" [buttonStyle]="buttonStyle"/>
                 </div>
             </form>
         </div>
@@ -26,3 +27,4 @@
         </div>
     </div>
 </div>
+<app-footer/>

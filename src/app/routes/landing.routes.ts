@@ -9,6 +9,7 @@ import { BargainsComponent } from '../features/market/bargains/bargains.componen
 import { SavedRetailersComponent } from '../features/market/saved-retailers/saved-retailers.component';
 import { ProductPageComponent } from '../features/market/product-page/product-page.component';
 import { VendorPageComponent } from '../features/market/main/vendor-page/vendor-page.component';
+import { RegisterEmailComponent } from '../features/register/register-email/register-email.component';
 
 export const routes: Routes = [
     {
@@ -54,5 +55,9 @@ export const routes: Routes = [
     {
         path: 'vendor-page',
         component: VendorPageComponent
+    },
+    {
+        path: 'register-email',
+        component: RegisterEmailComponent
     },
 ];

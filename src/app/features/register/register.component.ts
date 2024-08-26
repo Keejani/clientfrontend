@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { GeneralOAuthButtonComponent } from '../components/general-oauth-button/general-oauth-button.component';
 import { GeneralbuttonComponent } from '../components/generalbutton/generalbutton.component';
 import { GeneralinpuOneComponent } from '../components/generalinpu-one/generalinpu-one.component';
+import { FormsModule } from '@angular/forms';
+import { FooterComponent } from "../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [RouterLink, GeneralOAuthButtonComponent, GeneralbuttonComponent, GeneralinpuOneComponent],
+  imports: [RouterLink, FormsModule, GeneralOAuthButtonComponent, GeneralbuttonComponent, GeneralinpuOneComponent, FooterComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
+
+  constructor(private router : Router){}
 
   style = {
     'height' : '2.5rem',
@@ -52,5 +56,11 @@ export class RegisterComponent {
     'color' : '#FFF',
     'cursor' : 'pointer'
   }
+
+  register(){
+    this.router.navigate(['/register-email'+ this.email]);
+  }
+
+  email : string = "";
 
 }

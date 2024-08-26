@@ -4,11 +4,12 @@ import { GeneralbuttonComponent } from '../components/generalbutton/generalbutto
 import { GeneralOAuthButtonComponent } from '../components/general-oauth-button/general-oauth-button.component';
 import { RouterLink } from '@angular/router';
 import { OAuth2Google } from '../../utils/api.constant';
+import { FooterComponent } from "../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [GeneralinpuOneComponent, RouterLink, GeneralOAuthButtonComponent, GeneralbuttonComponent],
+  imports: [GeneralinpuOneComponent, RouterLink, GeneralOAuthButtonComponent, GeneralbuttonComponent, FooterComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })

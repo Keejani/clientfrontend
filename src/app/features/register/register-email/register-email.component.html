@@ -1,0 +1,91 @@
+<div class="keejani-container">
+    <div class="logo">
+      <!-- <img src="assets/logo2.svg" alt="KEEJANI"> -->
+       <span class="point back-button" [routerLink]="['/register']">Back</span>
+    </div>
+  
+    <div class="progress-bar">
+      <div [class.active]="currentStep >= 1">Setup Account</div>
+      <div [class.active]="currentStep >= 2">Verify OTP</div>
+      <div [class.active]="currentStep === 3">Successful</div>
+    </div>
+  
+    <!-- Setup Account -->
+    <form *ngIf="currentStep === 1" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="form-fill">
+      <div class="head">
+        <h2>Identity</h2>
+        <hr>
+      </div>
+      <div class="input">
+       <div class="form-group">
+         <label for="firstName">First Name</label>
+         <input [ngStyle]="style" placeholder="Simon"  id="firstName" type="text" formControlName="firstName">
+       </div>
+       <div class="form-group">
+         <label for="lastName">Last Name</label>
+         <input [ngStyle]="style" placeholder="Peter" id="lastName" type="text" formControlName="lastName">
+       </div>
+      </div>
+    </div>
+  
+    <div class="form-fill">
+      <div class="head">
+        <h2>Contact</h2>
+        <hr>
+      </div>
+     <div class="input">
+      <div class="form-group">
+        <label for="email">Email for this account</label>
+        <input placeholder="simon.peter@email.com" [ngStyle]="style" id="email" type="email" formControlName="email">
+      </div>
+      <div class="form-group">
+        <label for="contactNumber">Contact Number</label>
+        <input placeholder="+233 50373690" [ngStyle]="style" id="contactNumber" type="tel" formControlName="contactNumber">
+      </div>
+     </div>
+  
+    </div>
+     <div class="form-fill">
+      <div class="head">
+        <h2>Authentication</h2>
+        <hr>
+      </div>
+     <div class="input">
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input placeholder="•••••••••" [ngStyle]="style"  id="password" type="password" formControlName="password">
+      </div>
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password</label>
+        <input placeholder="•••••••••" [ngStyle]="style"  id="confirmPassword" type="password" formControlName="confirmPassword">
+      </div>
+     </div>
+     </div>
+  
+      <button type="submit">Next</button>
+    </form>
+  
+    <!-- Verify OTP -->
+    <form *ngIf="currentStep === 2" [formGroup]="otpForm" (ngSubmit)="onSubmit()">
+      <h2>OTP</h2>
+      <div class="otp-input">
+        <input [ngStyle]="style"  type="text" formControlName="otp" maxlength="6" placeholder="______">
+      </div>
+      <p class="otp-message">An OTP code has been sent to you via the email you registered with, please use that to verify your account.</p>
+      <button type="submit">Verify</button>
+    </form>
+  
+    <!-- Successful -->
+    <div *ngIf="currentStep === 3" class="success-message">
+      <!-- <ng-lottie [options]="lottieOptions" (animationCreated)="animationCreated($event)"></ng-lottie> -->
+      <h2>Congratulations on Successfully creating your account.</h2>
+      <p>Please proceed to our Market place to interact with our traders.</p>
+      <button (click)="goToMarket()">Go to the Market</button>
+    </div>
+  
+    <p class="sign-in-link">Already have an account? <a [routerLink]="['/login']" >Sign In</a></p>
+  </div>
+
+
+  <app-footer/>
