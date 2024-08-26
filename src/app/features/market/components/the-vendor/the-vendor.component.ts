@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RatingsComponent } from "../ratings/ratings.component";
+import { FooterComponent } from "../../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-the-vendor',
   standalone: true,
-  imports: [RatingsComponent],
+  imports: [RatingsComponent, FooterComponent],
   templateUrl: './the-vendor.component.html',
   styleUrl: './the-vendor.component.css'
 })

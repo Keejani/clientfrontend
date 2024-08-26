@@ -4,11 +4,12 @@ import { GeneralbuttonComponent } from "../../components/generalbutton/generalbu
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
 import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
+import { FooterComponent } from "../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-saved-retailers',
   standalone: true,
-  imports: [SubTotalComponent, GeneralbuttonComponent, ProductsFetchComponent, TopPanelComponent, NavbarComponent],
+  imports: [SubTotalComponent, GeneralbuttonComponent, ProductsFetchComponent, TopPanelComponent, NavbarComponent, FooterComponent],
   templateUrl: './saved-retailers.component.html',
   styleUrl: './saved-retailers.component.css'
 })
