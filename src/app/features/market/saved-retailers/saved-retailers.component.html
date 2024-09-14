@@ -39,11 +39,13 @@
           @else {
             <div class="empty-cart">
                 <h2 class="h2">No Saved Retailers</h2>
-                <app-generalbutton [buttonStyle]="buttonStyle" label="Continue to Market"/>
+                <app-generalbutton [routerLink]="['/market']" [buttonStyle]="buttonStyle" label="Continue to Market"/>
             </div>
           }
     </div>
 </div>
 
-<app-products-fetch/>
+<div class="product-fetch">
+    <app-products-fetch class="j-c"/>
+  </div>
 <app-footer/>

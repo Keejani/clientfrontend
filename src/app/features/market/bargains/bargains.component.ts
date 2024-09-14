@@ -4,11 +4,12 @@ import { SubTotalComponent } from "../components/sub-total/sub-total.component";
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
 import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
+import { FooterComponent } from "../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-bargains',
   standalone: true,
-  imports: [GeneralbuttonComponent, SubTotalComponent, ProductsFetchComponent, TopPanelComponent, NavbarComponent],
+  imports: [GeneralbuttonComponent, SubTotalComponent, ProductsFetchComponent, TopPanelComponent, NavbarComponent, FooterComponent],
   templateUrl: './bargains.component.html',
   styleUrl: './bargains.component.css'
 })

@@ -137,6 +137,18 @@ hr{
     color: #fff;
 }
 
+
+.product-fetch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .j-c{
+    width: 100%;
+    max-inline-size: 80rem;
+  }
+
 @media screen and (max-width:900px) {
     .container{
         padding: 0 10px;
