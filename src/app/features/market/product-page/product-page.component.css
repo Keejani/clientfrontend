@@ -309,3 +309,14 @@
     margin: 5px 0;
     font-size: 14px;
   }
+
+  .product-fetch{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .j-c{
+    width: 100%;
+    max-inline-size: 90rem;
+  }

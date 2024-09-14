@@ -4,11 +4,12 @@ import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
 import { NgxGlideModule } from 'ngx-glide';
 import { NgFor } from '@angular/common';
+import { FooterComponent } from "../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [NavbarComponent, NgFor, NgxGlideModule, TopPanelComponent, ProductsFetchComponent],
+  imports: [NavbarComponent, NgFor, NgxGlideModule, TopPanelComponent, ProductsFetchComponent, FooterComponent],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

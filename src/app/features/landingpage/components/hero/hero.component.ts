@@ -1,10 +1,11 @@
 import { CUSTOM_ELEMENTS_SCHEMA, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NgxGlideModule } from 'ngx-glide';
 
 @Component({
   selector: 'app-hero',
   standalone: true,
-  imports: [NgxGlideModule],
+  imports: [NgxGlideModule, RouterLink],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

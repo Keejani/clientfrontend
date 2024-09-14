@@ -1,6 +1,6 @@
 <nav>
     <div class="container">
-        <div class="logo">
+        <div class="logo point" [routerLink]="['']">
             <img src="../../../../assets/logo2.svg">
         </div>
        <div class="menu-responsive large">
@@ -12,9 +12,9 @@
         </div>
        </div>
         <div class="ctas-user-details">
-            <span class="merchant">
-                <span class="material-symbols-outlined">add_business</span>
-                <span>Become a Retailer</span>
+            <span [routerLink]="['market']" class="merchant point">
+                <span class="material-symbols-outlined">store</span>
+                <span>Market Place</span>
             </span>
 
             <div class="cart-profile">

@@ -4,11 +4,12 @@ import { ProductsFetchComponent } from "../products-fetch/products-fetch.compone
 import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { TheVendorComponent } from "../components/the-vendor/the-vendor.component";
 import { FilterComponent } from "./component/filter/filter.component";
+import { FooterComponent } from "../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [NavbarComponent, ProductsFetchComponent, TopPanelComponent, TheVendorComponent, FilterComponent],
+  imports: [NavbarComponent, ProductsFetchComponent, TopPanelComponent, TheVendorComponent, FilterComponent, FooterComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
