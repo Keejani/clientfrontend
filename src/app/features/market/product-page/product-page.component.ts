@@ -4,12 +4,13 @@ import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
 import { NgxGlideModule } from 'ngx-glide';
 import { NgFor } from '@angular/common';
+import { GalleriaModule } from 'primeng/galleria';
 import { FooterComponent } from "../../../core/components/footer/footer.component";
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [NavbarComponent, NgFor, NgxGlideModule, TopPanelComponent, ProductsFetchComponent, FooterComponent],
+  imports: [NavbarComponent, NgFor,  GalleriaModule, NgFor, NgxGlideModule, TopPanelComponent, ProductsFetchComponent, FooterComponent],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
@@ -23,6 +24,26 @@ export class ProductPageComponent {
     perView: 1,
     autoplay: 3000,
   };
+  images = [];
+
+  responsiveOptions: any[] | undefined;
+
+  ngOnInit() {
+    this.responsiveOptions = [
+        {
+            breakpoint: '1024px',
+            numVisible: 5
+        },
+        {
+            breakpoint: '768px',
+            numVisible: 3
+        },
+        {
+            breakpoint: '560px',
+            numVisible: 1
+        }
+    ];
+}
 
   listOfCards : Array<any> = [
     {

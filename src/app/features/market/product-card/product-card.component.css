@@ -1,6 +1,6 @@
 .product-card{
     width: auto;
-    max-width: 38rem;
+    max-width: 32rem;
     /* max-height: 19rem; */
     /* height: 16rem; */
     display: flex;
@@ -140,10 +140,12 @@
     align-items: center;
 }
 
-@media screen and (max-width: 450px) {
+
+
+@media screen and (max-width: 1250px) {
 
     .product-card{
-        width: 100%;
+        width: 25svw;
         max-width: none;
     }
 

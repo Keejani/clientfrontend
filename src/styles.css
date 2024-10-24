@@ -1,3 +1,6 @@
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
 :root{
 
     /* Additional Colors */
@@ -16,6 +19,7 @@
 ::selection{
     background-color: var(--primaryAccentColor);
 }
+
 
 @font-face {
     font-family: 'Product Sans';
@@ -78,6 +82,11 @@ body{
     display: none;  /* Chrome, Safari, and Opera */
 }
 
+@media screen and (max-width:1270px) {
+    .max-width{
+        padding: 5px 30px;
+    }
+}
 
 @media screen and (max-width: 900px) {
     .empty-cart{

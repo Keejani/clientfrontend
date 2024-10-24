@@ -102,6 +102,12 @@
     color: #ccc;
   }
 
+  @media screen and (max-width:1200px) {
+    form input{
+        width: 12dvw;
+    }
+}
+
   @media screen and (max-width: 900px) {
 
     .footer{

@@ -7,25 +7,39 @@
     <p class="product-purpose">{{product.purpose}}</p>
   
     <div class="product-image-carousel">
-        <ngx-glide [options]="glideOptions">
+        <!-- <ngx-glide [options]="glideOptions">
             @for (item of listOfCards; track $index) {
                 <ngx-glide-slide>
                     <div class="card">
                         <img src="{{item.img}}" alt="">
                     </div>
                 </ngx-glide-slide>
-            }
-<!--           
-            <ngx-glide-arrows>
+                } 
+              </ngx-glide> -->
+              <p-galleria 
+          [value]="listOfCards" 
+          [responsiveOptions]="responsiveOptions" 
+          [containerStyle]="{ 'max-width': '100%'  }" 
+          [numVisible]="5">
+            <ng-template class="pic" pTemplate="item" let-item>
+                <img [src]="item.img" style="width: 100%; height: 50dvh; object-fit: cover;" />
+            </ng-template>
+            <ng-template pTemplate="thumbnail" let-item>
+                <div class="grid grid-nogutter justify-content-center">
+                    <img [src]="item.img" style="width: 10svw; height: 10dvh; object-fit: cover;"/>
+                </div>
+            </ng-template>
+          </p-galleria>
+    </div>
+            <!-- <ngx-glide-arrows>
               <ngx-glide-arrow type="prev"></ngx-glide-arrow>
               <ngx-glide-arrow type="next"></ngx-glide-arrow>
             </ngx-glide-arrows> 
-          
-             <ngx-glide-bullets>
+           -->
+             <!-- <ngx-glide-bullets>
               <ngx-glide-bullet *ngFor="let i of listOfCards; let idx = index" [index]="idx"></ngx-glide-bullet>
-            </ngx-glide-bullets> -->
-          </ngx-glide>
-    </div>
+            </ngx-glide-bullets>
+           </ngx-glide> -->
   
     <div class="bidding-section">
       <div class="bid-info">

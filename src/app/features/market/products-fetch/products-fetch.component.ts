@@ -2,17 +2,40 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angul
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { NgxGlideModule } from 'ngx-glide';
 import { NgFor } from '@angular/common';
+import { CarouselModule } from 'primeng/carousel';
 
 @Component({
   selector: 'app-products-fetch',
   standalone: true,
-  imports: [ProductCardComponent, NgFor, NgxGlideModule],
+  imports: [ProductCardComponent, NgFor, NgxGlideModule, CarouselModule],
   templateUrl: './products-fetch.component.html',
   styleUrl: './products-fetch.component.css',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 
 })
 export class ProductsFetchComponent {
+
+  responsiveOptions: any[] | undefined;
+
+  ngOnInit() {
+
+    this.responsiveOptions = [
+        {
+            breakpoint: '1199px',
+            numVisible: 1,
+            numScroll: 1
+        },
+        {
+            breakpoint: '991px',
+            numVisible: 2,
+            numScroll: 1
+        },
+        {
+            breakpoint: '767px',
+            numVisible: 1,
+            numScroll: 1
+        }
+    ];
+}
 
   glideOptions = {
     type: 'carousel',
@@ -76,7 +99,6 @@ export class ProductsFetchComponent {
   private startX = 0;
   private scrollLeft = 0;
 
-  ngOnInit(): void {}
 
   // ngAfterViewInit(): void {
   //   this.scrollContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {

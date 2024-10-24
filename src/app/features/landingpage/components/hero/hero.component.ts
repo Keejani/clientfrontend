@@ -19,28 +19,34 @@ export class HeroComponent {
     autoplay: 3000,
   };
 
-  listOfCards : Array<any> = [
+  listOfCards: Array<any> = [
     {
-      title : "Title 1",
-      subtitle : "Somethings about title 1"
+      title: "Title 1",
+      subtitle: "Somethings about title 1",
+      image: "https://img.freepik.com/free-photo/dirty-dumped-objects-arrangement_23-2148996942.jpg?t=st=1728722390~exp=1728725990~hmac=62fd26538d7da5eab05e5c5d21b4af5e83725d484b8a055a0de98e0e18cf787a&w=740"
     },
     {
-      title : "Title 2",
-      subtitle : "Somethings about title 2"
+      title: "Title 2",
+      subtitle: "Somethings about title 2",
+      image: "https://img.freepik.com/free-photo/dirty-dumped-objects-arrangement_23-2148996942.jpg?t=st=1728722390~exp=1728725990~hmac=62fd26538d7da5eab05e5c5d21b4af5e83725d484b8a055a0de98e0e18cf787a&w=740"
     },
     {
-      title : "Title 3",
-      subtitle : "Somethings about title 3"
+      title: "Title 3",
+      subtitle: "Somethings about title 3",
+      image: "https://img.freepik.com/free-photo/dirty-dumped-objects-arrangement_23-2148996942.jpg?t=st=1728722390~exp=1728725990~hmac=62fd26538d7da5eab05e5c5d21b4af5e83725d484b8a055a0de98e0e18cf787a&w=740"
     },
     {
-      title : "Title 4",
-      subtitle : "Somethings about title 4"
+      title: "Title 4",
+      subtitle: "Somethings about title 4",
+      image: "https://img.freepik.com/free-photo/dirty-dumped-objects-arrangement_23-2148996942.jpg?t=st=1728722390~exp=1728725990~hmac=62fd26538d7da5eab05e5c5d21b4af5e83725d484b8a055a0de98e0e18cf787a&w=740"
     },
     {
-      title : "Title 5",
-      subtitle : "Somethings about title 5"
-    },
-  ]
+      title: "Title 5",
+      subtitle: "Somethings about title 5",
+      image: "https://img.freepik.com/free-photo/dirty-dumped-objects-arrangement_23-2148996942.jpg?t=st=1728722390~exp=1728725990~hmac=62fd26538d7da5eab05e5c5d21b4af5e83725d484b8a055a0de98e0e18cf787a&w=740"
+    }
+  ];
+  
 
   TopRetailers : Array<string> = [
      "https://img.freepik.com/free-photo/middle-aged-cheerful-dark-skinned-male-with-shining-smile_273609-28538.jpg?ga=GA1.2.1900006000.1721461402&semt=sph",

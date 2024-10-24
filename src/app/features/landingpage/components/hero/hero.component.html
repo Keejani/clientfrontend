@@ -10,7 +10,7 @@
                     @for (item of listOfCards; track $index) {
                         <ngx-glide-slide>
                             <div class="card">
-                                <img src="" alt="">
+                                <img src="{{item.image}}" alt="">
                                 <div class="captions">
                                     <span>{{item.title}}</span>
                                     <span>{{item.subtitle}}</span>
@@ -18,15 +18,6 @@
                             </div>
                         </ngx-glide-slide>
                     }
-                  
-                    <!-- <ngx-glide-arrows>
-                      <ngx-glide-arrow type="prev"></ngx-glide-arrow>
-                      <ngx-glide-arrow type="next"></ngx-glide-arrow>
-                    </ngx-glide-arrows> -->
-                  
-                    <!-- <ngx-glide-bullets>
-                      <ngx-glide-bullet *ngFor="let i of [0,1,2,3]; let idx = index" [index]="idx"></ngx-glide-bullet>
-                    </ngx-glide-bullets> -->
                   </ngx-glide>
                   
             </div>

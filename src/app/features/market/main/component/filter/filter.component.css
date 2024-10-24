@@ -1,5 +1,5 @@
 .filter{
-    width: 20rem;
+    /* width: 15rem; */
 }
 
 .container{
@@ -41,6 +41,7 @@ fieldset ul li{
     width: 100%;
     display: flex;
     justify-content: space-between;
+    gap: 120px;
 }
 
 .head{

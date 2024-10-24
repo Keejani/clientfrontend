@@ -3,22 +3,6 @@
         <div class="bargains">
             <span [routerLink]="['/bagains']" >Bargains: 4</span>
         </div>
-        <div class="saved-retailers">
-            <span [routerLink]="['/saved-retailers']">Saved Retailers: </span>
-            <div class="retailers no-scroll-bar" #scrollContainer>
-                @for (item of savedRetailers; track $index) {
-                    <div class="cards" >
-                        <div class="card-img">
-                            <img src="{{item.image}}" alt="">
-                        </div>
-                        <div class="data">
-                            <span class="word-shorten">{{item.name}}</span>
-                            <span class="word-shorten">by {{item.owner}}</span>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
         <div class="countries">
             <span>GH <img src="" alt=""></span>
         </div>

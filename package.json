@@ -20,6 +20,7 @@
     "@angular/router": "^17.0.0",
     "@glidejs/glide": "^3.6.1",
     "ngx-glide": "^16.0.0",
+    "primeng": "^17.18.11",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.2"
