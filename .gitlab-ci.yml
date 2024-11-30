@@ -9,7 +9,7 @@ variables:
   SSH_USER: ubuntu
   SERVER_IP: 51.20.93.126
   DEPLOY_PATH: /home/ubuntu/buyer
-  PRIVATE_KEY_PATH:  /builds/devs1632222/keejani/my-gcp-key
+  PRIVATE_KEY_PATH:  /builds/devs1632222/Keejani/my-gcp-key
 
 cache:
   paths:
