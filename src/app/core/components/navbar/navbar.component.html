@@ -12,7 +12,7 @@
         </div>
        </div>
         <div class="ctas-user-details">
-            <span [routerLink]="['market']" class="merchant point">
+            <span [routerLink]="['/market']" class="merchant point">
                 <span class="material-symbols-outlined">store</span>
                 <span>Market Place</span>
             </span>
@@ -24,6 +24,9 @@
                 </div>
                 
                 @if(isLoggedIn()){
+                  @if (isLoading) {
+                    <p-skeleton shape="circle" size="2.7rem" styleClass="mr-2" />
+                  } @else if(userData != null){
                     <div class="user-profile">
                         <span class="profile">
                             <span (click)="toggleDropDown()" class="identity">{{userData.firstName.substring(0, 1) + userData.lastName.substring(0, 1) }}</span>
@@ -52,6 +55,7 @@
                               }
                         </span>
                     </div>
+                  }
                 } @else{
                     <div [routerLink]="['/login']" class="login">
                         <span>Login</span>

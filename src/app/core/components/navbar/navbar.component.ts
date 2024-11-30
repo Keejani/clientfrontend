@@ -1,16 +1,17 @@
 import { NgClass } from '@angular/common';
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth/auth.service';
 import { User } from '../../../utils/user.interfaces';
 import { UserCrudService } from '../../../services/user/user-crud.service';
 import { CartCrudService } from '../../../services/cart/cart-crud.service';
 import { cartItems } from '../../../utils/cart.interface';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [NgClass, RouterLink],
+  imports: [NgClass, RouterLink, SkeletonModule],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -20,26 +21,19 @@ export class NavbarComponent implements OnInit, AfterViewInit{
 
 
   menuOpened : boolean = false;
-  userData! : User;
+  userData! : any;
   cartItem : number = 0;
   profileToggle : boolean = false;
 
+  cartService = inject(CartCrudService)
+
+
   ngOnInit(): void {
     this.getUserData();
-    this.getCartItems();
   }
 
   ngAfterViewInit(): void {
     this.getUserData();
-  }
-
-  getCartItems(){
-    this.cart.getCartItems({Id :this.getUserId()}).subscribe({
-      next: (n : any) => {
-        this.cartItem = n.cartItems.length;
-        console.log(n.cartItems)
-      }
-    })
   }
 
   menuToggle(){
@@ -47,8 +41,7 @@ export class NavbarComponent implements OnInit, AfterViewInit{
   }
 
   getUserId() : string {
-     const id = this.auth.generalGetStorageFtn('uId');
-     console.log(id);
+     const id = this.auth.generalGetStorageFtn('uid');
      if(id != null) return id;
      else return 'No Id'
   }
@@ -57,17 +50,30 @@ export class NavbarComponent implements OnInit, AfterViewInit{
     this.profileToggle =! this.profileToggle;
   }
 
+  isLoading = false;
+
   getUserData() {
-    if(this.getUserId() != 'No Id'){
-    this.user.getUser({Id : this.getUserId()}).subscribe({
-      next: (n : any) => {
-        this.userData = n;
-        return n;
-      },
-      error: (e) => {
-        console.log('Error!')
-      }
-    })
+    this.isLoading = true;
+
+    const uid = sessionStorage.getItem("uid");
+    if(uid != null){
+      this.user.getUser({Id : uid}).subscribe({
+        next: (n : any) => {
+          this.userData = n;
+          this.cartService.getCartItems({Id : n.cartId}).subscribe({
+            next: (n : any) => {
+              this.isLoading = false;
+              this.cartItem = n.cartItems.length
+              this.auth.refreshToken()
+              return n;
+            },
+            error: (e) => {
+            this.isLoading = false;
+            this.auth.refreshToken()
+          }
+        })
+        }
+      })
     }
     return this.userData;
   }
@@ -79,7 +85,7 @@ export class NavbarComponent implements OnInit, AfterViewInit{
   }
 
   logout(){
-    localStorage.clear();
+    sessionStorage.clear();
     this.profileToggle = false;
     this.router.navigate([''])
   }

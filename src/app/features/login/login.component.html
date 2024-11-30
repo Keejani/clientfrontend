@@ -1,35 +1,97 @@
 <div class="login">
     <div class="container">
-        <div class="logo point" [routerLink]="['']">
-            <img src="../../../assets/logo.svg" alt="Keejani">
-            <!-- <span>Keejani</span> -->
-        </div>
-        <span id="login">Login</span>
-        <div class="form">
-            <form>
-                <div class="input">
-                    <label for="email">Email</label>
-                    <app-generalinpu-one type="email" placeholder="Email" [inputStyle]="style"/>
-                </div>
-                <div class="input">
-                    <label for="email">Password</label>
-                    <app-generalinpu-one type="email" placeholder="•••••••••" [inputStyle]="style"/>
-                </div>
-            </form>
-            <app-generalbutton class="point" [buttonStyle]="buttonStyle" label="Login" [action]="login"/>
-            <span  routerLink="../forgot-password" class="forgot-password point">forgot password?</span>
-            <div class="divider">
-                <hr>
-                <span>Or</span>
-                <hr>
-            </div>
-            <div class="oauth">
-                <app-general-oauth-button [action]="googleOAuth" [buttonStyle]="oAuthButtonStyle" image="../../../assets/search.png" label="Sign In with Google" />
-            </div>
-        </div>
-        <div class="register">
-            <span class="point" [routerLink]="['../register']">Register</span>
-        </div>
+      <!-- Logo Section -->
+      <div class="logo point" [routerLink]="['']">
+        <img src="../../../assets/logo.svg" alt="Keejani">
+      </div>
+  
+      <!-- Login Header -->
+      <span id="login">Login</span>
+  
+      <!-- Login Form -->
+      <div class="form">
+        <form (ngSubmit)="login()" #loginForm="ngForm">
+          <!-- Email Input -->
+          <div class="input">
+            <label for="email">Email</label>
+            <app-generalinpu-one 
+              [(ngModel)]="payload.email" 
+              name="email" 
+              type="email" 
+              placeholder="Email" 
+              [inputStyle]="style"
+              required
+              email
+            />
+          </div>
+  
+          <!-- Password Input -->
+          <div class="input">
+            <label for="password">Password</label>
+            <app-generalinpu-one 
+              [(ngModel)]="payload.password" 
+              name="password" 
+              type="password" 
+              placeholder="•••••••••" 
+              [inputStyle]="style"
+              required
+            />
+          </div>
+  
+          <!-- Error Alert -->
+          <span class="text-red-400 text-xs" *ngIf="errorAlert">
+            {{ errorAlert }}
+          </span>
+  
+          <!-- Login Button or Loading State -->
+          <div class="login-action">
+            @if (isLoading) {
+              <div class="loading">Authenticating...</div>
+            } @else {
+              <app-generalbutton 
+                class="point" 
+                [buttonStyle]="buttonStyle" 
+                label="Login" 
+                (click)="login()"
+                type="submit"
+              />
+            }
+          </div>
+  
+          <!-- Forgot Password Link -->
+          <span 
+            routerLink="../forgot-password" 
+            class="forgot-password point"
+          >
+            Forgot password?
+          </span>
+  
+          <!-- Divider -->
+          <div class="divider">
+            <hr>
+            <span>Or</span>
+            <hr>
+          </div>
+  
+          <!-- OAuth Section -->
+          <div class="oauth">
+            <app-general-oauth-button 
+              [action]="googleOAuth" 
+              [buttonStyle]="oAuthButtonStyle" 
+              image="../../../assets/search.png" 
+              label="Sign In with Google" 
+            />
+          </div>
+        </form>
+      </div>
+  
+      <!-- Register Link -->
+      <div class="register">
+        <span class="point" [routerLink]="['../register']">
+          Register
+        </span>
+      </div>
     </div>
-</div>
-<app-footer/>
+  </div>
+  
+  <app-footer/>

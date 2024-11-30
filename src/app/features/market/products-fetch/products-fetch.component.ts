@@ -100,6 +100,8 @@ export class ProductsFetchComponent {
   private scrollLeft = 0;
 
 
+  
+
   // ngAfterViewInit(): void {
   //   this.scrollContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {
   //     event.preventDefault();

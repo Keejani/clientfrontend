@@ -2,7 +2,7 @@ import { HttpInterceptorFn } from '@angular/common/http';
 
 export const jwtInterceptor: HttpInterceptorFn = (req, next) => {
 // Get the JWT token from localStorage (or wherever you store it)
-const token = localStorage.getItem('jwt_token');
+const token = sessionStorage.getItem('jwt_tkn');
 
 if (token) {
   // Clone the request and add the token to the Authorization header

@@ -52,6 +52,7 @@
 
 .caption .caption-subtitle{
     width: 70%;
+    line-height: 40px;
     font-size: 40px;
     color: #fff;
 }

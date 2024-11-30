@@ -86,23 +86,27 @@
     font-size: 15px;
     font-weight: 500;
   }
-  
-  .bid-actions input,
-  .bid-actions button {
-    padding: 10px;
-    border: 1px solid var(--mediumGray);
-    border-radius: 4px;
-  }
+
   
   .bid-button {
     background-color: var(--primaryAccentColor);
     color: white;
     border: none;
+    border-radius: 0 !important;
     cursor: pointer;
   }
   
   .bid-button:hover {
     background-color: var(--accentDarkColor);
+  }
+ 
+  .cart-button:hover {
+    background-color: grey;
+  }
+
+  .cart-button{
+    background-color: #000 !important;
+    color: #fff !important;
   }
   
   .vendor-section {
@@ -323,4 +327,9 @@
   .j-c{
     width: 100%;
     max-inline-size: 80rem;
+  }
+
+  .bid-actions button{
+    height: 40px;
+    padding: 0 20px;
   }

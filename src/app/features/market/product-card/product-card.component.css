@@ -1,8 +1,6 @@
-.product-card{
+/* .product-card{
     width: auto;
     max-width: 32rem;
-    /* max-height: 19rem; */
-    /* height: 16rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,7 +18,6 @@
 .image{
     width: 19rem;
     height: 100%;
-    /* min-height: 20rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,7 +27,6 @@
 .image img{
     height: 100%;
     width: 100%;
-    /* min-height: 15rem; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +35,6 @@
 
 .bargains{
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     width: 100%;
     height: 2rem;
@@ -95,7 +90,6 @@
     height: 2rem;
     width: 100%;
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     gap: 10px;
 }
@@ -109,8 +103,8 @@
     width: 15rem;
     font-size: 18px;
     font-weight: 600;
-    white-space: nowrap;       /* Prevents text from wrapping to the next line */
-    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    white-space: nowrap;      
+    overflow: hidden;         
     text-overflow: ellipsis;
 }
 
@@ -127,8 +121,8 @@
     width: 15rem;
     font-size: 14px;
     font-weight: 300;
-    white-space: nowrap;       /* Prevents text from wrapping to the next line */
-    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    white-space: nowrap;       
+    overflow: hidden;          
     text-overflow: ellipsis;
 }
 
@@ -183,5 +177,238 @@
 
     .cart-buttons{
         display: none;
+    }
+} */
+
+.product-card{
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 20px;
+}
+
+.image{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.image img{
+    height: 12rem;
+    width: 100%;
+    /* min-height: 15rem; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+}
+
+.image span{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 50px;
+    height: 30px;
+    font-size: 12px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    font-weight: 600;
+    box-shadow: 0 0 5px #fff;
+}
+
+
+.price {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.price span{
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.price span .material-symbols-outlined{
+    font-variation-settings: 'FILL' 1;
+}
+
+.bargains{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    width: 100%;
+    height: 2rem;
+    min-height: 2rem;
+    padding: 0 10px;
+    border: 1.5px solid #000;
+    font-size: 13px;
+    gap: 10px;
+}
+
+.bargains .material-symbols-outlined{
+    font-size: 17px;
+}
+
+
+.bargains:first-child {
+    color: rgb(120, 120, 120);
+}
+
+.bargains:last-child {
+    color: rgb(19, 164, 0);
+}
+
+.product-details{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.bookmark{
+    width: 30px;
+    height: 30px;
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1.5px solid #000;
+    border-radius: 40px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.support-container{
+    background-color: #000;
+    border-radius: 30px;
+    padding: 0 20px;
+    height: 2rem;
+    width: 100%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+}
+
+.support-container .title{
+    font-size: 12px;
+    color: #fff;
+}
+
+.product-name{
+    width: 15rem;
+    font-size: 18px;
+    font-weight: 600;
+    white-space: nowrap;       /* Prevents text from wrapping to the next line */
+    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    text-overflow: ellipsis;
+}
+
+.description{
+    color: #000;
+    width: 20rem;
+    font-size: 12px;
+    font-weight: 400;
+    white-space: nowrap;       /* Prevents text from wrapping to the next line */
+    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    text-overflow: ellipsis;
+}
+
+.cart-buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.describtion{
+    width: 20rem;
+    font-size: 14px;
+    font-weight: 300;
+    white-space: nowrap;       /* Prevents text from wrapping to the next line */
+    overflow: hidden;          /* Ensures that the overflowed text is hidden */
+    text-overflow: ellipsis;
+}
+
+
+
+.bargainning{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+:ng-deep .p-rating-star-on{
+    font-size: 12px  !important;
+}
+
+@media screen and (max-width: 450px) {
+
+    .product-card{
+        width: 100%;
+    }
+
+    .image, .image img{
+        width: 100%;
+        height: 10rem;
+        min-width: none;
+    }
+
+    .container{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .cart-buttons{
+        display: none;
+    }
+}
+
+@media screen and  (min-width: 451px) and (max-width: 900px) {
+
+    .product-card{
+        max-width: 100%;
+    }
+
+    .image, .image img{
+        width: 100%;
+        height: 10rem;
+        min-width: none;
+    }
+
+    .container{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .cart-buttons{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .product-card{
+        display: flex;
+        width: 100% !important;
     }
 }

@@ -6,11 +6,28 @@
             <app-filter/>
         </div>
         <div class="all-products">
-            <app-products-fetch class="width"/>
-            <app-products-fetch class="width"/>
-            <app-products-fetch class="width"/>
-            <app-products-fetch class="width"/>
-            <!-- <app-the-vendor class="width"/> -->
+            @if(itemsLoading){
+                <div class="card">
+                    <p-skeleton height="10rem" styleClass="mb-2" borderRadius="0px" />
+                    <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+                    <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+                </div>
+                <div class="card">
+                    <p-skeleton height="10rem" styleClass="mb-2" borderRadius="0px" />
+                    <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+                    <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+                </div>
+                <div class="card">
+                    <p-skeleton height="10rem" styleClass="mb-2" borderRadius="0px" />
+                    <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+                    <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+                </div>
+            } @else {     
+              @for (item of Items; track $index) {
+                 <app-product-card [product]="item"/>
+              }
+            }
+            <!-- <app-products-fetch class="width"/> -->
         </div>
     </div>
 </div>

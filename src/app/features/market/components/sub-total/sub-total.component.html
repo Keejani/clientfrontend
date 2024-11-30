@@ -5,42 +5,48 @@
             <span>items</span>
         </div>
         <div class="items">
-            <div class="card">
-                <div class="image">
-                            <img src="https://img.freepik.com/premium-photo/stack-old-metal-pieces-industrial-concept-suitable-backgrounds-recycling-themes_153912-48479.jpg?ga=GA1.2.1900006000.1721461402&semt=ais_hybrid" alt="">
-                            <!-- <img src="" alt=""> -->
-                    <div class="name">
-                        <span class="word-shorten">Item Name</span>
-                        <span>Quantity</span>
+          @if(cartItems.length == 0){
+            No Items Added to checkout
+          } @else {
+            @for (item of cartItems; track $index) {
+                <div class="card">
+                    <div class="image">
+                                <img src="https://img.freepik.com/premium-photo/stack-old-metal-pieces-industrial-concept-suitable-backgrounds-recycling-themes_153912-48479.jpg?ga=GA1.2.1900006000.1721461402&semt=ais_hybrid" alt="">
+                                <!-- <img src="" alt=""> -->
+                        <div class="name">
+                            <span class="word-shorten">{{item.item.name}}</span>
+                            <span>Quantity : {{item.cartItem.quantity}}</span>
+                        </div>
+                    </div>
+                    <div class="price">
+                        <span>Price</span>
+                        <span>{{item.item.price}}</span>
                     </div>
                 </div>
-                <div class="price">
-                    <span>Price</span>
-                    <span>GHC 20,923.00</span>
-                </div>
-            </div>
+               }
+          }
         </div>
         <div class="order-summary">
             <h2>Order Summary</h2>
             <span class="summary">
-                <span>Sum of products:</span> 
-                <span>GHC 2,390.00</span> 
+                <span>Sum of products:</span>
+                <span>GHC {{subtotal | number:'1.2-2'}}</span>
             </span>
             <span class="summary">
-                <span>Service Charges:</span> 
-                <span>GHC 2,390.00</span> 
+                <span>Service Charges:</span>
+                <span>GHC {{serviceCharges | number:'1.2-2'}}</span>
             </span>
             <span class="summary">
-                <span>Sum Before tax:</span> 
-                <span>GHC 2,390.00</span> 
+                <span>Sum Before tax:</span>
+                <span>GHC {{subtotal + serviceCharges | number:'1.2-2'}}</span>
             </span>
             <span class="summary">
-                <span>Estimated tax:</span> 
-                <span>GHC 200.00</span> 
+                <span>Estimated tax:</span>
+                <span>GHC {{tax | number:'1.2-2'}}</span>
             </span>
             <span class="summary Total">
-                <span>Total:</span> 
-                <span>GHC 200.00</span> 
+                <span>Total:</span>
+                <span>GHC {{total | number:'1.2-2'}}</span>
             </span>
         </div>
 

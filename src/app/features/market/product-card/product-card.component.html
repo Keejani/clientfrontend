@@ -1,43 +1,49 @@
 <div class="product-card">
     <div class="container">
-        <div class="image" [routerLink]="['/products']">
-            <img src="https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060" alt="">
+        <div class="image" [routerLink]="['/products']" [queryParams]="{id : product.id}">
+            <img [src]="product.pictureUrl[0].imageUrl" alt="">
         </div>
         <div class="product-details">
-            @if (product.purchaseType) {
-                <span class="product-name">{{product.name}}</span>
-                <app-generalinpu-one placeholder="Bargin" />
-                <div class="bargainning">
-                    <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>${{product.startBargain}}</span>
-                    <span class="bargains"><span class="material-symbols-outlined">trending_up</span> ${{product.currentBargain}}</span>
+          
+            @if (product.itemPurchaseCategory == "BID") {
+                    <span class="product-name">{{product.name}}</span>
+                    <span class="text-sm">{{product.price | currency}}</span>
+                    <span class="description text-xs">{{product.description}}</span>
+                    <div class="barg flex items-center">
+                        <app-generalinpu-one placeholder="Bargain" />
+                        <app-generalbuybutton label="Bargain" [buttonStyle]="addBuyButtonStyle"/>
+                    </div>
+                    <div class="bargainning">
+                        <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>{{product.bids[0].lowestBid | currency}}</span>
+                        <span class="bargains"><span class="material-symbols-outlined">trending_up</span> {{product.bids[1].highestBid | currency}}</span>
                 </div>
-                <div class="support">
+                <div class="support flex items-center justify-space-between gap-5">
                     <div class="support-container">
                         <span class="title">Vendor Supports:</span>
                         @for (item of product.support; track $index) {
                             <span class="material-symbols-outlined">{{item}}</span>
                         }
                     </div>
-                    <span class="bookmark material-symbols-outlined">bookmark</span>
+                    <!-- <span class="bookmark material-symbols-outlined">bookmark</span> -->
                 </div>
                 <div class="cart-buttons">
-                    <app-generaladdtocartbutton class="cart"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
-                    <app-generalbuybutton label="Bagain" [buttonStyle]="addBuyButtonStyle"/>
+                    <app-generaladdtocartbutton class="cart w-full"  [buttonStyle]="addToCartButtonStyle" label="Add to Bargain Basket"/>
                 </div>
                 <div class="ratings">
                     <app-ratings/>
                 </div>
             } @else {
                 <span class="product-name">{{product.name}}</span>
-                <span class="description">Lorem ipsum dolor sit amet consectetur. Malesuada nec sit eget ipsum ac ut egestas sit. At elementum justo in diam amet a.</span>
-                <div class="support">
+                <span class="text-sm">{{product.price | currency}}</span>
+                <span class="description">{{product.description}}</span>
+                <div class="support flex items-center justify-space-between gap-5">
                     <div class="support-container">
                         <span class="title">Vendor Supports:</span>
                         @for (item of supports; track $index) {
                             <span class="material-symbols-outlined"></span>
                         }
                     </div>
-                    <span class="bookmark material-symbols-outlined">bookmark</span>
+                    <!-- <span class="bookmark material-symbols-outlined">bookmark</span> -->
                 </div>
                 <div class="cart-buttons">
                     <app-generaladdtocartbutton class="cart"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
@@ -50,3 +56,45 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="product-card">
+    <div class="container">
+        <div class="image" [routerLink]="['/dashboard/product-page']" [queryParams]="{id : product.id}">
+
+                <img [src]="product.pictureUrl[0].imageUrl">
+                <span class="">{{product.itemPurchaseCategory}}</span>
+
+        </div>
+        <div class="product-details">
+            @if (product.itemPurchaseCategory == "BID") {
+                <div class="product w-full flex justify-between align-center">
+                    <span class="product-name">{{product.name}}</span>
+                    <span class="w-auto bg-black text-white flex justify-center px-2 text-sm items-center rounded-full h-7 br-20">QTY: {{product.quantity}}</span>
+                </div>
+                <div class="bargainning">
+                    <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>{{product.bids[0].lowestBid | currency}}</span>
+                    <span class="bargains"><span class="material-symbols-outlined">trending_up</span> {{product.bids[1].highestBid | currency}}</span>
+                </div>
+                <span class="describtion">{{product.description	}}</span>
+                <div class="price">
+                    <span class="flex items-center"><span class="mr-2 text-green-600 material-symbols-outlined">trending_up</span>{{product.bids[1].highestBid | currency }} per <span class="ml-1" style="text-transform: lowercase;">{{product.measure}}</span></span>
+                </div>
+                <div class="ratings">
+                </div>
+
+            } @else {
+                <div class="product w-full flex justify-between align-center">
+                    <span class="product-name">{{product.name}}</span>
+                    <span class="w-auto bg-black text-white flex justify-center px-2 text-sm items-center rounded-full h-7 br-20">QTY: {{product.quantity}}</span>
+                </div>
+                <span class="describtion">{{product.description	}}</span>
+                <div class="price">
+                    <span class="flex items-center"> <span class="mr-2 material-symbols-outlined">shoppingmode</span> {{product.price | currency}} per <span class="ml-1" style="text-transform: lowercase;">{{product.measure}}</span></span>
+                </div>
+                <div class="ratings">
+                </div>
+                
+            }
+        </div>
+    </div>
+</div> -->

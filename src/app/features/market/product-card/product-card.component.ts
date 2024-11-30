@@ -4,11 +4,12 @@ import { GeneralAddToCartbuttonComponent } from "../components/generaladdtocartb
 import { GeneralbuybuttonComponent } from "../components/generalbuybutton/generalbuybutton.component";
 import { RatingsComponent } from "../components/ratings/ratings.component";
 import { RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [RouterLink, GeneralinpuOneComponent, GeneralAddToCartbuttonComponent, GeneralbuybuttonComponent, RatingsComponent],
+  imports: [RouterLink, CommonModule, GeneralinpuOneComponent, GeneralAddToCartbuttonComponent, GeneralbuybuttonComponent, RatingsComponent],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
@@ -23,7 +24,7 @@ export class ProductCardComponent {
   addToCartButtonStyle = {
    
     'height' : '2rem',
-    'width' : '9rem',
+    'width' : '100%',
     'border' : '0',
     'padding' : '0 10px',
     'outline' : '0',

@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ChangeDetectionStrategy, Component, CUSTOM_ELEMENTS_SCHEMA, inject, OnInit } from '@angular/core';
 import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
 import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
@@ -6,17 +6,27 @@ import { NgxGlideModule } from 'ngx-glide';
 import { NgFor } from '@angular/common';
 import { GalleriaModule } from 'primeng/galleria';
 import { FooterComponent } from "../../../core/components/footer/footer.component";
+import { ActivatedRoute } from '@angular/router';
+import { CartCrudService } from '../../../services/cart/cart-crud.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProductCommentDialogComponent } from './dialog-component/comment.components';
+import { QuillModule } from 'ngx-quill';
+import { FormsModule } from '@angular/forms';
+import { CartItem } from '../../../utils/cart.interface';
+import { UserCrudService } from '../../../services/user/user-crud.service';
+import { NumbersOnlyDirective } from '../../../utils/directives/numbers-only-directive';
+import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
 
 @Component({
   selector: 'app-product-page',
   standalone: true,
-  imports: [NavbarComponent, NgFor,  GalleriaModule, NgFor, NgxGlideModule, TopPanelComponent, ProductsFetchComponent, FooterComponent],
+  imports: [NavbarComponent, NumbersOnlyDirective, NgFor, QuillModule, FormsModule, GalleriaModule, NgFor, NgxGlideModule, TopPanelComponent, ProductsFetchComponent, FooterComponent],
   templateUrl: './product-page.component.html',
   styleUrl: './product-page.component.css',
-  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  changeDetection: ChangeDetectionStrategy.OnPush
 
 })
-export class ProductPageComponent {
+export class ProductPageComponent implements OnInit{
 
   glideOptions = {
     type: 'carousel',
@@ -24,26 +34,49 @@ export class ProductPageComponent {
     perView: 1,
     autoplay: 3000,
   };
+
+  loadingCart = false;
+
+  quillModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      ['clean']
+    ]
+  };
+
+  comment = "";
+
+  isLoading = false;
   images = [];
+
+  dialog = inject(MatDialog)
 
   responsiveOptions: any[] | undefined;
 
-  ngOnInit() {
-    this.responsiveOptions = [
-        {
-            breakpoint: '1024px',
-            numVisible: 5
-        },
-        {
-            breakpoint: '768px',
-            numVisible: 3
-        },
-        {
-            breakpoint: '560px',
-            numVisible: 1
-        }
-    ];
-}
+  route = inject(ActivatedRoute);
+  toaster = inject(CustomToasterService);
+  cartService = inject(CartCrudService);
+  userService = inject(UserCrudService);
+
+  ngOnInit(): void {
+      this.responsiveOptions = [
+          {
+              breakpoint: '1024px',
+              numVisible: 5
+          },
+          {
+              breakpoint: '768px',
+              numVisible: 3
+          },
+          {
+              breakpoint: '560px',
+              numVisible: 1
+          }
+      ];
+  
+      this.getParams()
+  }
 
   listOfCards : Array<any> = [
     {
@@ -60,21 +93,9 @@ export class ProductPageComponent {
 
   rating = 4.5;
   totalReviews = 23;
-  reviews = [
-    { username: 'User Name', date: 'Thursday, 2nd June, 2024', content: 'Review content here...' },
-    // Add more review objects
-  ];
 
-  product = {
-    name: 'Recycled Plastic Pellets',
-    purpose: 'Raw material for plastic manufacturing',
-    initialBid: 230.00,
-    currentBid: 509.00,
-    currency: 'GHC',
-    type: 'Plastic',
-    recycleGrade: 'HDPE',
-    description: 'Lorem ipsum dolor sit amet consectetur. Commodo tincidunt nisi est aliquam nunc turpis adipiscing neque quam. Dictum enim in massa diam dolor scelerisque nullam commodo. Vivamus nunc vitae montes imperdiet mauris faucibus vitae enim lectus. Quisque porttitor aliquam pharetra facilisi duis.'
-  };
+
+  product : any;
 
   vendor = {
     name: 'Eco Plastics Ltd',
@@ -84,13 +105,79 @@ export class ProductPageComponent {
   placeBid() {
     // Implement bid logic
   }
-
-  addToCart() {
-    // Implement add to cart logic
+  
+  buy() {
+    // Implement bid logic
   }
 
   saveForLater() {
     // Implement save for later logic
+  }
+
+  addReview(){
+    const uid = sessionStorage.getItem("uid");
+    if(uid != null)
+    this.dialog.open(ProductCommentDialogComponent, {
+      data: {
+        productId : this.product.id,
+        buyerId : uid
+      }
+    })
+  }
+
+
+  getParams(){
+    this.isLoading = true;
+    this.route.queryParams.subscribe({
+      next: (n : any) => {
+        this.isLoading = true;
+        if(n != null)
+          this.cartService.getProduct({Id : n.id}).subscribe({
+        next: (n : any) =>{
+            this.isLoading = false;
+            this.product = n
+          }
+        })
+      }
+    })
+  }
+
+  increaseQuantity(item: number): void {
+    item + 1;
+  }
+
+  quantity = 1;
+
+  decreaseQuantity(item: number): void {
+    if (item > 1) {
+      item--;
+    }
+  }
+
+  addToCart(itemId : string){
+    this.loadingCart = true;
+    const uid = sessionStorage.getItem("uid");
+    if(uid != null)
+      this.userService.getUser({Id: uid}).subscribe({
+    next: (n : any) => {
+      var payload :  CartItem = {
+        itemId: itemId,
+        cartId: n.cartId,
+        quantity: this.quantity
+      }
+      
+      this.cartService.addToCart(payload).subscribe({
+        next: (n : any) => {
+          this.loadingCart = false;
+          this.toaster.show("success", "Added to cart successfully!")
+        }, 
+        error: (e)=> {
+          this.loadingCart = false;
+          this.toaster.show("error", e.message)
+        }
+       })
+     }
+  })
   }
 
 }

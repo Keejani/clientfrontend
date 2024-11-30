@@ -5,11 +5,10 @@ export interface cartItems {
 }
 
 export interface CartItem {
-    id: string;
+    id?: string;
     cartId: string;
     itemId: string;
-    quantity: number;
-    measure: Measurement;
+    quantity?: number;
   }
 
   export interface Item {

@@ -38,6 +38,19 @@ export class AuthorizationComponent {
      complete: () => {
      }
    });
+
+   this.route.queryParams.subscribe({
+    next: (n : any) => {
+      const email = n.email;
+      const code = n.nucode;
+
+      this.auth.verifyUser(email,code).subscribe({
+        next: (n : any) => {
+          this.router.navigate([''])
+        }
+      })
+    }
+   })
  }
 
 
