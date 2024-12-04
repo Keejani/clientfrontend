@@ -14,6 +14,12 @@
     gap: 20px;
 }
 
+.items{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .items-tag{
     background-color: var(--black);
     padding: 2px 10px;
@@ -85,14 +91,14 @@ hr{
 
 .image{
     height: 8rem;
-    width: 8rem;
+    width: 8rem !important;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .image img{
-    width: 100%;
+    min-width: 8rem !important;
     height: 100%;
     object-fit: cover;
 }

@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="details">
                                     <span class="name">{{item.item.name}}</span>
-                                    <span class="description">{{item.item.description}}</span>
+                                    <span class="description shorten-v2">{{item.item.description}}</span>
                                 </div>
                             </div>
                             <hr>
@@ -32,7 +32,7 @@
                                 <div class="unit">
                                     <span class="ton">per {{item.item.measure}}</span>
                                     <!-- <span class="unite">unit</span> -->
-                                    <span class="quantity">quantity: <input [value]="item.cartItem.quantity" type="number"></span>
+                                    <span class="quantity">quantity: <input (click)="updateSelectedItems()" [value]="item.cartItem.quantity" type="number"></span>
                                 </div>
                             </div>
                             @if(loadingCart){
@@ -52,8 +52,9 @@
                             type="checkbox" 
                             [(ngModel)]="item.selected" 
                             (change)="updateSelectedItems()"
-                          />                           </div>
-                        }
+                          />                           
+                        </div>
+                    }
                     </fieldset>
                 </div>
             </div>

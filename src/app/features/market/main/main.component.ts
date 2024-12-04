@@ -8,17 +8,30 @@ import { FooterComponent } from "../../../core/components/footer/footer.componen
 import { MarketService } from '../../../services/market/market.service';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { SkeletonModule } from 'primeng/skeleton';
+import { CartCrudService } from '../../../services/cart/cart-crud.service';
+import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
+import { ToastrService } from 'ngx-toastr';
+import { UserCrudService } from '../../../services/user/user-crud.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-main',
   standalone: true,
-  imports: [NavbarComponent, ProductsFetchComponent, SkeletonModule, TopPanelComponent, TheVendorComponent, FilterComponent, FooterComponent, ProductCardComponent],
+  imports: [NavbarComponent, FormsModule, SkeletonModule, TopPanelComponent, TheVendorComponent, FilterComponent, FooterComponent, ProductCardComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.css'
 })
 export class MainComponent implements OnInit{
 
   marketService = inject(MarketService)
+  cartService = inject(CartCrudService)
+  toaster = inject(ToastrService)
+  userService = inject(UserCrudService)
+
+  itemsLoading = false;
+  loadingBid = false;
+  bid = 0;
+  bidError = "";
 
   ngOnInit(): void {
     this.getAllItems()
@@ -26,7 +39,6 @@ export class MainComponent implements OnInit{
 
   Items : Array<any> = []
 
-  itemsLoading = false;
 
   getAllItems(){
     this.itemsLoading = true;
@@ -37,5 +49,7 @@ export class MainComponent implements OnInit{
       }
     })
   }
+
+
 
 }

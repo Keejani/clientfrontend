@@ -1,6 +1,6 @@
 <div class="product-card">
     <div class="container">
-        <div class="image" [routerLink]="['/products']" [queryParams]="{id : product.id}">
+        <div class="image" [routerLink]="['/product-page']" [queryParams]="{id : product.id}">
             <img [src]="product.pictureUrl[0].imageUrl" alt="">
         </div>
         <div class="product-details">
@@ -10,11 +10,15 @@
                     <span class="text-sm">{{product.price | currency}}</span>
                     <span class="description text-xs">{{product.description}}</span>
                     <div class="barg flex items-center">
-                        <app-generalinpu-one placeholder="Bargain" />
-                        <app-generalbuybutton label="Bargain" [buttonStyle]="addBuyButtonStyle"/>
+                        <app-generalinpu-one placeholder="Bargain" [(ngModel)]="bid" name="bid"/>
+                        @if(loadingBid){
+                            <app-generalbuybutton label="bidding..." [buttonStyle]="addBuyButtonStyle"/>
+                        } @else {
+                            <app-generalbuybutton label="Bargain" (click)="placeBid(product.id)" [buttonStyle]="addBuyButtonStyle"/>
+                        }
                     </div>
                     <div class="bargainning">
-                        <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>{{product.bids[0].lowestBid | currency}}</span>
+                        <span class="bargains"><span class="material-symbols-outlined">trending_flat</span>{{product.price | currency}}</span>
                         <span class="bargains"><span class="material-symbols-outlined">trending_up</span> {{product.bids[1].highestBid | currency}}</span>
                 </div>
                 <div class="support flex items-center justify-space-between gap-5">
@@ -46,7 +50,11 @@
                     <!-- <span class="bookmark material-symbols-outlined">bookmark</span> -->
                 </div>
                 <div class="cart-buttons">
-                    <app-generaladdtocartbutton class="cart"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
+                    @if(loadingCart){
+                        <app-generaladdtocartbutton class="cart" [buttonStyle]="addToCartButtonStyle" label="Adding..."/>
+                       } @else {
+                        <app-generaladdtocartbutton class="cart" (click)="addToCart(product.id)"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
+                       }
                     <app-generalbuybutton label="Buy" [buttonStyle]="addBuyButtonStyle"/>
                 </div>
                 <div class="ratings">

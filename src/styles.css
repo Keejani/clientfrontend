@@ -3,6 +3,8 @@
 
 @import 'quill/dist/quill.snow.css';
 
+@import 'ngx-toastr/toastr';
+
 :root{
 
     /* Additional Colors */
@@ -75,6 +77,14 @@ body{
     overflow: hidden;          /* Ensures that the overflowed text is hidden */
     text-overflow: ellipsis;
 }
+
+.shorten-v2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;/* Set a specific width for the truncation */
+  }
 
 .no-scroll-bar{
     -ms-overflow-style: none;  /* IE and Edge */

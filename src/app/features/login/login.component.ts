@@ -106,7 +106,9 @@ export class LoginComponent {
       },
       error: (error: any) => {
         this.isLoading = false;
-        this.showError(error?.message || 'Login Unsuccessful');
+        console.log(error);
+        
+        this.showError(error?.error.message || 'Login Unsuccessful');
       }
     });
   }

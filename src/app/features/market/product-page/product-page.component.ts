@@ -16,6 +16,8 @@ import { CartItem } from '../../../utils/cart.interface';
 import { UserCrudService } from '../../../services/user/user-crud.service';
 import { NumbersOnlyDirective } from '../../../utils/directives/numbers-only-directive';
 import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-product-page',
@@ -47,17 +49,22 @@ export class ProductPageComponent implements OnInit{
 
   comment = "";
 
-  isLoading = false;
   images = [];
+  isLoading = false;
+  loadingBid = false;
+  successfull = false;
 
   dialog = inject(MatDialog)
 
   responsiveOptions: any[] | undefined;
 
   route = inject(ActivatedRoute);
-  toaster = inject(CustomToasterService);
+  // toaster = inject(CustomToasterService);
+  toaster = inject(ToastrService);
   cartService = inject(CartCrudService);
   userService = inject(UserCrudService);
+  bid: number = 0;
+  bidError: any;
 
   ngOnInit(): void {
       this.responsiveOptions = [
@@ -102,10 +109,7 @@ export class ProductPageComponent implements OnInit{
     image: 'https://img.freepik.com/free-photo/photo-automobile-production-line-welding-car-body-modern-car-assembly-plant-auto-industry-interior-hightech-factory-modern-production_645730-185.jpg?t=st=1723879011~exp=1723882611~hmac=b141bf4cd367918992bb8c3422606c968c596df02d44906c5142b10f2178184a&w=996'
   };
 
-  placeBid() {
-    // Implement bid logic
-  }
-  
+ 
   buy() {
     // Implement bid logic
   }
@@ -169,7 +173,7 @@ export class ProductPageComponent implements OnInit{
       this.cartService.addToCart(payload).subscribe({
         next: (n : any) => {
           this.loadingCart = false;
-          this.toaster.show("success", "Added to cart successfully!")
+          this.toaster.success("Added to cart successfully!")
         }, 
         error: (e)=> {
           this.loadingCart = false;
@@ -179,5 +183,60 @@ export class ProductPageComponent implements OnInit{
      }
   })
   }
-
+ 
+  placeBid(itemId: string) {
+    // Start loading state
+    
+    this.loadingBid = true;
+    // Get user ID from session storage
+    const uid = sessionStorage.getItem("uid");
+    
+    this.bidError = "";
+    
+    // Validate bid before submission
+    if (this.bid <= this.product.price) {
+      this.toaster.error( "Amount should be greater than 0 or the starting bid!")
+      this.loadingBid = false;
+      return ;
+    }
+    
+    if (uid && this.bid > this.product.price) {
+      // Retrieve user details
+      this.userService.getUser({ Id: uid }).subscribe({
+        next: (user: any) => {
+          // Prepare bid payload
+          
+          const payload = {
+            itemId: itemId,
+            buyerId: user.id,
+            bid: this.bid
+          };
+  
+          // Submit bid
+          this.cartService.bidProduct(payload).subscribe({
+            next: (response: any) => {
+              // Successful bid
+              this.loadingBid = false;
+              this.successfull = true;
+              this.toaster.show("success", "Bid placed successfully!");
+            },
+            error: (error) => {
+              // Bid failed
+              this.loadingBid = false;
+              this.toaster.show("error", error.message || "Failed to place bid");
+            }
+          });
+        },
+        error: (userError) => {
+          // User retrieval failed
+          this.loadingBid = false;
+          this.toaster.show("error", "Unable to retrieve user information");
+        }
+      });
+    } else {
+      // No user ID found
+      this.loadingBid = false;
+      this.toaster.show("error", "Please log in to place a bid");
+    }
+  }
 }

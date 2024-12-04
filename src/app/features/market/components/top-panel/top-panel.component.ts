@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, Input, input, OnInit, ViewChild } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { CartCrudService } from '../../../../services/cart/cart-crud.service';
 
 @Component({
   selector: 'app-top-panel',
@@ -8,7 +9,25 @@ import { RouterLink } from '@angular/router';
   templateUrl: './top-panel.component.html',
   styleUrl: './top-panel.component.css'
 })
-export class TopPanelComponent implements AfterViewInit {
+export class TopPanelComponent implements AfterViewInit , OnInit{
+
+  @Input() bids! : number;
+
+  cartService = inject(CartCrudService)
+
+  getAllBids(){
+    const userId = sessionStorage.getItem('uid');
+
+    if(userId != null){
+      this.cartService.getBids({Id: userId}).subscribe({
+        next: (n : any) => {
+          console.log(n);
+          this.bids = n.length
+        }
+      })
+    }
+  }
+
 
   savedRetailers: Array<any> = [
     {
@@ -59,7 +78,9 @@ export class TopPanelComponent implements AfterViewInit {
   private startX = 0;
   private scrollLeft = 0;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllBids()
+  }
 
   ngAfterViewInit(): void {
     this.scrollContainer.nativeElement.addEventListener('wheel', (event: WheelEvent) => {

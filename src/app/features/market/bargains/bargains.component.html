@@ -1,40 +1,41 @@
 <app-navbar/>
-<app-top-panel/>
+<app-top-panel [bids]="bids.length"/>
 <div class="cart">
     <div class="container">
         @if(true){
             <div class="cart-items max-width">
                 <div class="head">
                     <h1>Bids</h1>
-                    <span class="items-tag">items: 2</span>
+                    <span class="items-tag">items: {{bids.length}}</span>
                 </div>
                 <div class="items">
                     <!-- Card -->
-                    <fieldset class="card">
-                        <div class="item-details">
-                            <div class="image">
-                                <img src="https://img.freepik.com/premium-photo/stack-old-metal-pieces-industrial-concept-suitable-backgrounds-recycling-themes_153912-48479.jpg?ga=GA1.2.1900006000.1721461402&semt=ais_hybrid" alt="">
+                    @for (bid of bids; track $index) {
+                        <fieldset class="card">
+                            <div class="item-details">
+                                <div class="image">
+                                    <img src="https://img.freepik.com/premium-photo/stack-old-metal-pieces-industrial-concept-suitable-backgrounds-recycling-themes_153912-48479.jpg?ga=GA1.2.1900006000.1721461402&semt=ais_hybrid" alt="">
+                                </div>
+                                <div class="details">
+                                    <span class="name">Item Name</span>
+                                    <span class="description shorten-v2">Description</span>
+                                </div>
                             </div>
-                            <div class="details">
-                                <span class="name">Item Name</span>
-                                <span class="description">Description</span>
+                            <hr>
+                            <div class="price">
+                                <span class="title">Your Bid</span>
+                                <span class="pricing">{{bid.bid | currency}}</span>
+                                <div class="unit">
+                                    <span class="ton">per ton</span>
+                                    <span class="unite">unit</span>
+                                </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="price">
-                            <span class="title">Price</span>
-                            <span class="pricing">$23,943.00</span>
-                            <div class="unit">
-                                <span class="ton">per ton</span>
-                                <span class="unite">unit</span>
-                                <span class="quantity">quantity: <input value="2" type="number"></span>
+                            <div class="checkbox">
+                                <input type="checkbox"/>
+                                <span [ngClass]="{'declined': bid.status == 'DECLINED', 'approved' : bid.status == 'APPROVED'}" class="status">{{bid.status}}</span>
                             </div>
-                        </div>
-                        <div class="checkbox">
-                            <input type="checkbox"/>
-                            <span class="status">Pending</span>
-                        </div>
-                    </fieldset>
+                        </fieldset>
+                    }
                 </div>
             </div>
             <!-- <app-sub-total/> -->

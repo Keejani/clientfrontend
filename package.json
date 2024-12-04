@@ -23,6 +23,7 @@
     "@glidejs/glide": "^3.6.1",
     "ngx-glide": "^16.0.0",
     "ngx-quill": "^27.0.0",
+    "ngx-toastr": "^19.0.0",
     "primeng": "^17.18.11",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

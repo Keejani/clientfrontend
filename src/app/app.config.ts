@@ -7,6 +7,7 @@ import { jwtInterceptor } from './services/jwtInterceptor/jwt.interceptor';
 import { CustomToasterService } from './services/custom-toaster/custom-toaster.service';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes),
@@ -18,5 +19,6 @@ export const appConfig: ApplicationConfig = {
      provideHttpClient(withInterceptors([jwtInterceptor])), 
      { provide: LocationStrategy, useClass: HashLocationStrategy },
      CustomToasterService, 
+     provideToastr(), // Toastr providers     
      provideAnimationsAsync()]
 };

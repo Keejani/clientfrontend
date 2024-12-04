@@ -15,6 +15,14 @@ export class CartCrudService {
   getCartItems(id : GeneralId){
      return this.http.get(`${API_BASE_URL}/api/v1/cart/${id.Id}`)
   }
+
+  getBids(id : GeneralId){
+     return this.http.get(`${API_BASE_URL}/api/v1/cart/buyer-bids`, {
+      params: {
+        buyerId: id.Id
+      }
+     })
+  }
   
   getProduct(id : GeneralId){
      return this.http.get(`${API_BASE_URL}/api/v1/cart/product`, {
@@ -26,6 +34,10 @@ export class CartCrudService {
 
   addToCart(cartItem: CartItem): Observable<any> {
     return this.http.post(`${API_BASE_URL}/api/v1/cart/addToCart`, cartItem);
+  }
+ 
+  bidProduct(cartItem: object): Observable<any> {
+    return this.http.post(`${API_BASE_URL}/api/v1/vendor/request`, cartItem);
   }
 
   removeFromCart(cartItem: string): Observable<any> {

@@ -6,20 +6,42 @@
         <div class="list-of-products">
             <!-- <ngx-glide  [options]="glideOptions"> -->
                 
-<p-carousel 
-[value]="products" 
-[numVisible]="2" 
-[numScroll]="1" 
-[circular]="false" 
-[responsiveOptions]="responsiveOptions" >
+
+
+@if(itemsLoading){
+   <div class="skeleton-cards flex items-center gap-10">
+    <div class="card">
+        <p-skeleton height="10rem" styleClass="mb-2" borderRadius="0px" />
+        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+    </div>
+    <div class="card">
+        <p-skeleton height="10rem" styleClass="mb-2" borderRadius="0px" />
+        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+    </div>
+    <div class="card">
+        <p-skeleton height="10rem" styleClass="mb-2" borderRadius="0px" />
+        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+        <p-skeleton height="2rem" styleClass="mb-2" borderRadius="0px" />
+    </div>
+   </div>
+} @else {  
+    <p-carousel 
+        [value]="products" 
+        [numVisible]="3" 
+        [numScroll]="1" 
+        [circular]="false" 
+        [responsiveOptions]="responsiveOptions" >
                 <!-- @for (item of products; track $index) { -->
                 <!-- <ngx-glide-slide> -->
-                    <ng-template let-product pTemplate="item">
-                        <app-product-card [product]="products[0]" />
-                    </ng-template>
+        <ng-template let-product pTemplate="item">
+            <app-product-card [product]="product" />
+        </ng-template>
                     <!-- </ngx-glide-slide> -->
                 <!-- } -->
-</p-carousel>
+    </p-carousel>
+   }
         </div>
     </div>
 </div>

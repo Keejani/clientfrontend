@@ -1,13 +1,17 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, ViewChild } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, ElementRef, inject, ViewChild } from '@angular/core';
 import { ProductCardComponent } from "../product-card/product-card.component";
 import { NgxGlideModule } from 'ngx-glide';
 import { NgFor } from '@angular/common';
 import { CarouselModule } from 'primeng/carousel';
+import { CartCrudService } from '../../../services/cart/cart-crud.service';
+import { MarketService } from '../../../services/market/market.service';
+import { SkeletonModule } from 'primeng/skeleton';
+
 
 @Component({
   selector: 'app-products-fetch',
   standalone: true,
-  imports: [ProductCardComponent, NgFor, NgxGlideModule, CarouselModule],
+  imports: [ProductCardComponent, NgFor, SkeletonModule, NgxGlideModule, CarouselModule],
   templateUrl: './products-fetch.component.html',
   styleUrl: './products-fetch.component.css',
 
@@ -17,6 +21,8 @@ export class ProductsFetchComponent {
   responsiveOptions: any[] | undefined;
 
   ngOnInit() {
+
+    this.getAllItems()
 
     this.responsiveOptions = [
         {
@@ -45,54 +51,21 @@ export class ProductsFetchComponent {
     loop: false
   };
 
-  products = [
-    {
-      name: "Metal",
-      startBargain: "100",
-      currentBargain: "22,030.00",
-      purchaseType : true,
-      surports: [
-        'truck', 'package'
-      ]
-    },
-    {
-      name: "Glass",
-      startBargain: "2,490.00",
-      currentBargain: "40,204.00",
-      purchaseType : false,
-      surports: [
-        'truck', 'package'
-      ]
-    },
-    {
-      name: "Scrap Metal",
-      startBargain: "134.30",
-      currentBargain: "434,000.00",
-      purchaseType : true,
-      surports: [
-        'truck', 'package'
-      ]
-    },
-    {
-      name: "Metal",
-      startBargain: "23,044.32",
-      currentBargain: "237,000.00",
-      purchaseType : false,
-      surports: [
-        'truck', 'package'
-      ]
-    },
-    {
-      name: "Metal",
-      startBargain: "23,000.00",
-      currentBargain: "232,034.00",
-      purchaseType : true,
-      surports: [
-        'truck', 'package'
-      ]
-    },
-  ]
+  marketService = inject(MarketService)
+  
+  products : Array<any> = []
 
+  itemsLoading = false;
+
+  getAllItems(){
+    this.itemsLoading = true;
+    this.marketService.getCartItems().subscribe({
+      next: (n : any) => {
+        this.itemsLoading = false;
+        this.products = n
+      }
+    })
+  }
 
 
   private isDown = false;

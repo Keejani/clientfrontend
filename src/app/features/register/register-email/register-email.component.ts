@@ -208,9 +208,9 @@ export class RegisterEmailComponent implements OnInit, OnDestroy {
             this.toaster.show('error', n.message);
           }
         },
-        error: (e) => {
-          this.loading = false;
-          this.toaster.show('error', e.message);
+        error: (e : any) => {
+          this.loading = false;          
+          this.toaster.show('error', e.error.message);
         }
       });
       

@@ -40,69 +40,137 @@
             </ngx-glide-bullets>
            </ngx-glide> -->
   
-    <div class="bidding-section">
-     @if (product.itemPurchaseCategory == "BID") {
-      <div class="bid-info">
-        <div class="info">
-            <p>Initial Bid: </p><span>{{product.bids[0].lowestBid | currency}}</span>
-        </div>
-        <div class="info">
-          <p>Current Bid:</p><span>{{product.bids[1].highestBid | currency}}</span>
-        </div>
-      </div>
-      <hr>
-      <input type="number" placeholder="How much to bid?">
-      <div class="bid-actions">
-        <button class="save-button">Save for later</button>
-        <button class="cart-button">Add to cart</button>
-        <button class="bid-button" (click)="placeBid()">Place Bid</button>
-        
-      </div>
-    } @else {
-      <div class="bid-info">
-        <div class="info">
-          <span>Price </span><span>{{product.price | currency}}</span>
-      </div>
-      </div>
-      <hr>
-      <div class="bid-actions">
-        <div class="quantity-control flex items-center">
-          <button 
-            class="bg-gray-300 text-gray-700 font-bold px-3 py-1 disabled:bg-gray-200 disabled:cursor-not-allowed" 
-            (click)="decreaseQuantity(quantity)" 
-            [disabled]="quantity <= 1"
-          >
-            -
-          </button>
-          <input appNumbersOnly class="mx-4 w-20 align-center text-lg font-medium" [(ngModel)]="quantity"> 
-          <button 
-            class="bg-[#000] text-white font-bold px-3 py-1  hover:bg-grey-600" 
-            (click)="increaseQuantity(quantity)"
-          >
-            +
-          </button>
-        </div>
-        <!-- <button class="save-button">Save for later</button> -->
-        @if(loadingCart){
-          <button class="cart-button">
-            
-<div role="status">
-  <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-      <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-  </svg>
-  <span class="sr-only">Loading...</span>
-</div>
-
-          </button>
-        } @else {
-          <button class="cart-button" (click)="addToCart(product.id)">Add to cart</button>
-        }
-        <button class="bid-button" (click)="buy()">Buy</button>
-        
-      </div>
-     }
-    </div>
+           <div class="bidding-section">
+            @if (product.itemPurchaseCategory == "BID") {
+              <div class="bid-info space-y-2">
+                <div class="flex justify-between items-center">
+                  <p class="text-gray-600">Initial Bid:</p>
+                  <span class="font-semibold">{{product.price | currency}}</span>
+                </div>
+                <div class="flex justify-between items-center">
+                  <p class="text-gray-600">Current Bid:</p>
+                  <span class="font-semibold">{{product.bids[1].highestBid | currency}}</span>
+                </div>
+              </div>
+              
+              <hr class="my-4">
+              
+              <div class="bid-actions space-y-4">
+                <div class="flex items-center ">
+                  <input 
+                    type="number" 
+                    [(ngModel)]="bid" 
+                    placeholder="Enter your bid" 
+                    appNumbersOnly
+                    [disabled]="loadingCart"
+                    class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                           disabled:opacity-50 disabled:cursor-not-allowed"
+                  />
+                  
+                  <div class="flex items-center gap-5"> 
+                    <button class="save-button bg-gray-200 text-gray-700 py-2 hover:bg-gray-300 transition-colors">
+                      Save for later
+                    </button>
+                    <button class="cart-button bg-gray-800 text-white py-2 hover:bg-gray-900 transition-colors">
+                      Add to Bargains
+                    </button>
+                    <button 
+                      (click)="placeBid(product.id)" 
+                      [disabled]="loadingBid"
+                      class="bid-button bg-blue-600 text-white py-2 rounded-md 
+                             hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
+                             disabled:opacity-50 disabled:cursor-not-allowed 
+                             transition-colors flex items-center justify-center"
+                    >
+                      <span *ngIf="!loadingBid" class="flex items-center">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 1.414L10.586 9H7a1 1 0 100 2h3.586l-1.293 1.293a1 1 0 101.414 1.414l3-3a1 1 0 000-1.414z" clip-rule="evenodd" />
+                        </svg>
+                        Place Bid
+                      </span>
+                      
+                      <span *ngIf="loadingBid" class="flex items-center">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Placing Bid...
+                      </span>
+                    </button>
+                  </div>
+          
+                  <!-- Optional: Bid Validation Message -->
+                  <p *ngIf="bidError" class="mt-2 text-sm text-red-600 text-center">
+                    {{ bidError }}
+                  </p>
+                </div>
+              </div>
+            } @else {
+              <div class="bid-info">
+                <div class="flex justify-between items-center">
+                  <span class="text-gray-600">Price</span>
+                  <span class="font-semibold">{{product.price | currency}}</span>
+                </div>
+              </div>
+              
+              <hr class="my-4">
+              
+              <div class="bid-actions space-y-4">
+                <div class="quantity-control flex items-center justify-center mb-4">
+                  <button 
+                    class="bg-gray-300 text-gray-700 font-bold px-3 py-1 disabled:bg-gray-200 disabled:cursor-not-allowed" 
+                    (click)="decreaseQuantity(quantity)" 
+                    [disabled]="quantity <= 1"
+                  >
+                    -
+                  </button>
+                  <input 
+                    appNumbersOnly 
+                    class="mx-4 w-20 text-center text-lg font-medium" 
+                    [(ngModel)]="quantity"
+                  > 
+                  <button 
+                    class="bg-black text-white font-bold px-3 py-1 hover:bg-gray-800" 
+                    (click)="increaseQuantity(quantity)"
+                  >
+                    +
+                  </button>
+                </div>
+                
+                <div class="flex items-center justify-space-between flex-wrap gap-4">
+                  <button class="save-button bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors">
+                    Save for later
+                  </button>
+                  
+                  @if(loadingCart){
+                    <button class="cart-button col-span-1 flex items-center justify-center">
+                      <div role="status">
+                        <svg aria-hidden="true" class="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+                          <path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+                        </svg>
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </button>
+                  } @else {
+                    <button 
+                      class="cart-button bg-gray-800 text-white py-2 hover:bg-gray-900 transition-colors col-span-1" 
+                      (click)="addToCart(product.id)"
+                    >
+                      Add to cart
+                    </button>
+                  }
+                  
+                  <button 
+                    class="bid-button bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors" 
+                    (click)="buy()"
+                  >
+                    Buy
+                  </button>
+                </div>
+              </div>
+            }
+          </div>
 
   
     <!-- <div class="vendor-section">
@@ -140,8 +208,8 @@
     <div class="reviews-header">
       <h2>Reviews</h2>
       <div class="rating">{{product.comments.length}} ★★★★★</div>
-      <div class="total-reviews">Total: {{totalReviews}}</div>
-      <button class="add-review" (click)="addReview()">Add Review</button>
+      <div class="total-reviews">Total: {{product.comments.length}}</div>
+      <!-- <button class="add-review" (click)="addReview()">Add Review</button> -->
     </div>
     
     <div class="reviews-list">

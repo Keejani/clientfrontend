@@ -49,7 +49,7 @@ export const routes: Routes = [
         component : SavedRetailersComponent
     },
     {
-        path: 'products',
+        path: 'product-page',
         component: ProductPageComponent
     },
     {
