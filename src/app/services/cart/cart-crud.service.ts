@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { API_BASE_URL } from '../../utils/api.constant';
 import { GeneralId } from '../../utils/user.interfaces';
@@ -9,8 +9,15 @@ import { CartItem } from '../../utils/cart.interface';
   providedIn: 'root'
 })
 export class CartCrudService {
+  headers: HttpHeaders;
 
-  constructor(private http : HttpClient) { }
+
+  constructor(private http : HttpClient) { 
+    this.headers = new HttpHeaders({
+     // 'Content-Type': 'application/json',
+     'X-Skip-JWT-Interceptor': 'true' 
+   });
+ }
 
   getCartItems(id : GeneralId){
      return this.http.get(`${API_BASE_URL}/api/v1/cart/${id.Id}`)
@@ -28,7 +35,8 @@ export class CartCrudService {
      return this.http.get(`${API_BASE_URL}/api/v1/cart/product`, {
       params: {
         pId: id.Id 
-      }
+      },
+      headers: this.headers
      })
   }
 

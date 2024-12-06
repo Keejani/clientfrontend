@@ -50,6 +50,16 @@ export class NavbarComponent implements OnInit, AfterViewInit{
     this.profileToggle =! this.profileToggle;
   }
 
+  cartRoute(){
+    const uid = sessionStorage.getItem("uid");
+
+    if(uid != null){
+      this.router.navigate(['/cart'])
+    } else {
+      this.auth.loginDialog()
+    }
+  }
+
   isLoading = false;
 
   getUserData() {

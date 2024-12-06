@@ -68,16 +68,16 @@
                   />
                   
                   <div class="flex items-center gap-5"> 
-                    <button class="save-button bg-gray-200 text-gray-700 py-2 hover:bg-gray-300 transition-colors">
+                    <!-- <button class="save-button bg-gray-200 text-gray-700 py-2 hover:bg-gray-300 transition-colors">
                       Save for later
-                    </button>
-                    <button class="cart-button bg-gray-800 text-white py-2 hover:bg-gray-900 transition-colors">
+                    </button> -->
+                    <!-- <button class="cart-button bg-gray-800 text-white py-2 hover:bg-gray-900 transition-colors">
                       Add to Bargains
-                    </button>
+                    </button> -->
                     <button 
                       (click)="placeBid(product.id)" 
                       [disabled]="loadingBid"
-                      class="bid-button bg-blue-600 text-white py-2 rounded-md 
+                      class="bid-button ml-5 bg-blue-600 text-white py-2 rounded-md 
                              hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 
                              disabled:opacity-50 disabled:cursor-not-allowed 
                              transition-colors flex items-center justify-center"
@@ -116,7 +116,7 @@
               <hr class="my-4">
               
               <div class="bid-actions space-y-4">
-                <div class="quantity-control flex items-center justify-center mb-4">
+                <!-- <div class="quantity-control flex items-center justify-center">
                   <button 
                     class="bg-gray-300 text-gray-700 font-bold px-3 py-1 disabled:bg-gray-200 disabled:cursor-not-allowed" 
                     (click)="decreaseQuantity(quantity)" 
@@ -135,13 +135,13 @@
                   >
                     +
                   </button>
-                </div>
+                </div> -->
                 
                 <div class="flex items-center justify-space-between flex-wrap gap-4">
-                  <button class="save-button bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors">
+                  <!-- <button class="save-button bg-gray-200 text-gray-700 py-2 rounded-md hover:bg-gray-300 transition-colors">
                     Save for later
                   </button>
-                  
+                   -->
                   @if(loadingCart){
                     <button class="cart-button col-span-1 flex items-center justify-center">
                       <div role="status">
@@ -163,7 +163,7 @@
                   
                   <button 
                     class="bid-button bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors" 
-                    (click)="buy()"
+                    (click)="buy(product.id)"
                   >
                     Buy
                   </button>

@@ -72,7 +72,12 @@
   
   .bid-actions {
     display: flex;
+    align-items: center;
     gap: 10px;
+  }
+
+  .product{
+    margin: 10px !important;
   }
 
 
@@ -332,4 +337,8 @@
   .bid-actions button{
     height: 40px;
     padding: 0 20px;
+  }
+
+  ::ng-deep .p-carousel-items-container {
+    gap: 20px;
   }

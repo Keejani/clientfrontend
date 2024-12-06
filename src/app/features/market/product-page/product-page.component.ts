@@ -6,7 +6,7 @@ import { NgxGlideModule } from 'ngx-glide';
 import { NgFor } from '@angular/common';
 import { GalleriaModule } from 'primeng/galleria';
 import { FooterComponent } from "../../../core/components/footer/footer.component";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CartCrudService } from '../../../services/cart/cart-crud.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductCommentDialogComponent } from './dialog-component/comment.components';
@@ -17,6 +17,7 @@ import { UserCrudService } from '../../../services/user/user-crud.service';
 import { NumbersOnlyDirective } from '../../../utils/directives/numbers-only-directive';
 import { CustomToasterService } from '../../../services/custom-toaster/custom-toaster.service';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../../../services/auth/auth.service';
 
 
 @Component({
@@ -62,7 +63,9 @@ export class ProductPageComponent implements OnInit{
   // toaster = inject(CustomToasterService);
   toaster = inject(ToastrService);
   cartService = inject(CartCrudService);
+  authService = inject(AuthService);
   userService = inject(UserCrudService);
+  router = inject(Router);
   bid: number = 0;
   bidError: any;
 
@@ -110,9 +113,6 @@ export class ProductPageComponent implements OnInit{
   };
 
  
-  buy() {
-    // Implement bid logic
-  }
 
   saveForLater() {
     // Implement save for later logic
@@ -181,9 +181,26 @@ export class ProductPageComponent implements OnInit{
         }
        })
      }
-  })
+  }) 
+  else {
+    this.loadingCart = false
+    this.authService.loginDialog()
+  }
   }
  
+  buy(item : string){
+    const uid = sessionStorage.getItem("uid");
+     if(uid != null){
+      this.router.navigate(['/payment'], {
+        queryParams: {
+          id : item
+        }
+      })
+    } else {
+      this.authService.loginDialog()
+    }
+  }
+
   placeBid(itemId: string) {
     // Start loading state
     

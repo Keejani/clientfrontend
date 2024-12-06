@@ -25,52 +25,10 @@ export class TopPanelComponent implements AfterViewInit , OnInit{
           this.bids = n.length
         }
       })
+    } else {
+      return;
     }
   }
-
-
-  savedRetailers: Array<any> = [
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-    {
-      name: "AMSA",
-      owner: "Someone",
-      image: "https://img.freepik.com/premium-photo/sawdust_15578-97.jpg?w=1060"
-    },
-  ]
 
   @ViewChild('scrollContainer') scrollContainer!: ElementRef;
 

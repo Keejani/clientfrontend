@@ -3,13 +3,14 @@ import { GeneralinpuOneComponent } from '../../components/generalinpu-one/genera
 import { GeneralAddToCartbuttonComponent } from "../components/generaladdtocartbutton/generaladdtocartbutton.component";
 import { GeneralbuybuttonComponent } from "../components/generalbuybutton/generalbuybutton.component";
 import { RatingsComponent } from "../components/ratings/ratings.component";
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { CartCrudService } from '../../../services/cart/cart-crud.service';
 import { UserCrudService } from '../../../services/user/user-crud.service';
 import { FormsModule } from '@angular/forms';
 import { CartItem } from '../../../utils/cart.interface';
+import { AuthService } from '../../../services/auth/auth.service';
 
 @Component({
   selector: 'app-product-card',
@@ -25,6 +26,8 @@ export class ProductCardComponent {
   cartService = inject(CartCrudService)
   toaster = inject(ToastrService)
   userService = inject(UserCrudService)
+  authService = inject(AuthService)
+  router = inject(Router)
 
   itemsLoading = false;
   loadingBid = false;
@@ -93,6 +96,11 @@ export class ProductCardComponent {
        })
      }
   })
+
+  else {
+    this.loadingCart = false;
+    this.authService.loginDialog();
+  }
   }
 
   placeBid(itemId: string) {
@@ -148,6 +156,19 @@ export class ProductCardComponent {
       // No user ID found
       this.loadingBid = false;
       this.toaster.show("error", "Please log in to place a bid");
+    }
+  }
+
+  buy(item : string){
+    const uid = sessionStorage.getItem("uid");
+     if(uid != null){
+      this.router.navigate(['/payment'], {
+        queryParams: {
+          id : item
+        }
+      })
+    } else {
+      this.authService.loginDialog()
     }
   }
 

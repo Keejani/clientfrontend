@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { PaymentComponent } from './features/payment/payment.component';
 
 export const routes: Routes = [
     {
@@ -8,5 +9,9 @@ export const routes: Routes = [
     {
         path: 'market',
         loadChildren: () => import('./routes/market.routes').then((m) => m.routes)
+    },
+    {
+        path : 'payment',
+        component: PaymentComponent
     }
 ];

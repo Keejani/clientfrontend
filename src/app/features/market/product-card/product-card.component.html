@@ -30,9 +30,9 @@
                     </div>
                     <!-- <span class="bookmark material-symbols-outlined">bookmark</span> -->
                 </div>
-                <div class="cart-buttons">
+                <!-- <div class="cart-buttons">
                     <app-generaladdtocartbutton class="cart w-full"  [buttonStyle]="addToCartButtonStyle" label="Add to Bargain Basket"/>
-                </div>
+                </div> -->
                 <div class="ratings">
                     <app-ratings/>
                 </div>
@@ -55,7 +55,7 @@
                        } @else {
                         <app-generaladdtocartbutton class="cart" (click)="addToCart(product.id)"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
                        }
-                    <app-generalbuybutton label="Buy" [buttonStyle]="addBuyButtonStyle"/>
+                    <app-generalbuybutton (click)="buy(product.id)" label="Buy" [buttonStyle]="addBuyButtonStyle"/>
                 </div>
                 <div class="ratings">
                     <app-ratings/>

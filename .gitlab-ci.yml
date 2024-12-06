@@ -34,7 +34,7 @@ build:
     - chmod 644 ~/.ssh/known_hosts
     - chmod 400 $PRIVATE_KEY_PATH
     - eval $(ssh-agent -s)
-    - scp -r -i $PRIVATE_KEY_PATH "$(pwd)"/dist/keejani-client/browser/* $SSH_USER@$SERVER_IP:$DEPLOY_PATH
+    - scp -r -i $PRIVATE_KEY_PATH "$(pwd)"/dist/keejani-client/browser $SSH_USER@$SERVER_IP:$DEPLOY_PATH
     - ssh -i $PRIVATE_KEY_PATH  $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"
 
 # deploy:

@@ -35,8 +35,10 @@
         [responsiveOptions]="responsiveOptions" >
                 <!-- @for (item of products; track $index) { -->
                 <!-- <ngx-glide-slide> -->
-        <ng-template let-product pTemplate="item">
-            <app-product-card [product]="product" />
+        <ng-template let-product pTemplate="item" class="products">
+            <div class="product">
+                <app-product-card [product]="product" />
+            </div>
         </ng-template>
                     <!-- </ngx-glide-slide> -->
                 <!-- } -->

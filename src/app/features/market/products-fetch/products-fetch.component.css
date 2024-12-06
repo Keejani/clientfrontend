@@ -46,6 +46,11 @@
     scrollbar-width: none;  
 }
 
+.products{
+    /* display: flex; */
+    gap: 20px;
+}
+
 .list-of-products::-webkit-scrollbar {
     display: none;  /* Chrome, Safari, and Opera */
 }

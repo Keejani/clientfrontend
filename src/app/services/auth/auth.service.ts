@@ -4,6 +4,8 @@ import { GeneralId, RegisterUser } from '../../utils/user.interfaces';
 import { API_BASE_URL } from '../../utils/api.constant';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginDialogComponent } from '../../auth/login-dialog/login-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +15,7 @@ export class AuthService {
   headers !: HttpHeaders;
   uid: any;
   router = inject(Router)
+  dialog = inject(MatDialog)
 
   constructor(private http : HttpClient) { 
      this.headers = new HttpHeaders({
@@ -71,5 +74,12 @@ export class AuthService {
   
   generalGetStorageFtn( key : string){
     return sessionStorage.getItem(key);
+  }
+
+  loginDialog(){
+    const uid = sessionStorage.getItem("uid");
+
+    uid ?? this.dialog.open(LoginDialogComponent);
+     
   }
 }
