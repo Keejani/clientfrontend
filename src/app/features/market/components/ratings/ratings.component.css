@@ -4,10 +4,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px;
     background-color: var(--primaryAccentColor);
 }
 
-.ratings span:first-child{
+.ratings span{
     margin-right: 10px;
     font-size: 15px;
     color: var(--white);
@@ -22,3 +23,8 @@
   'opsz' 24;
   color: var(--white);
 }
+
+  ::ng-deep  .p-rating-icon{
+        color:#fff;
+        fill: #fff
+    }

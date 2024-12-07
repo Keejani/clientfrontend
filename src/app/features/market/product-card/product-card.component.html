@@ -23,10 +23,7 @@
                 </div>
                 <div class="support flex items-center justify-space-between gap-5">
                     <div class="support-container">
-                        <span class="title">Vendor Supports:</span>
-                        @for (item of product.support; track $index) {
-                            <span class="material-symbols-outlined">{{item}}</span>
-                        }
+                        <span class="title" style="text-transform: lowercase;"> {{product.quantity}} {{product.measure + "s"}} of {{product.category}} product for bid</span>
                     </div>
                     <!-- <span class="bookmark material-symbols-outlined">bookmark</span> -->
                 </div>
@@ -34,7 +31,7 @@
                     <app-generaladdtocartbutton class="cart w-full"  [buttonStyle]="addToCartButtonStyle" label="Add to Bargain Basket"/>
                 </div> -->
                 <div class="ratings">
-                    <app-ratings/>
+                    <app-ratings [reviews]="product.comments.length" [ratings]="product.rating"/>
                 </div>
             } @else {
                 <span class="product-name">{{product.name}}</span>
@@ -42,23 +39,23 @@
                 <span class="description">{{product.description}}</span>
                 <div class="support flex items-center justify-space-between gap-5">
                     <div class="support-container">
-                        <span class="title">Vendor Supports:</span>
-                        @for (item of supports; track $index) {
-                            <span class="material-symbols-outlined"></span>
-                        }
+                        <span class="title" style="text-transform: lowercase;"> {{product.quantity}} {{product.measure + "s"}} of {{product.category}} product for sale</span>
                     </div>
-                    <!-- <span class="bookmark material-symbols-outlined">bookmark</span> -->
                 </div>
                 <div class="cart-buttons">
                     @if(loadingCart){
-                        <app-generaladdtocartbutton class="cart" [buttonStyle]="addToCartButtonStyle" label="Adding..."/>
-                       } @else {
+                        <app-generaladdtocartbutton class="cart" [buttonStyle]="addToCartButtonStyle" label="Processing..."/>
+                    } @else if(!inCartStatus) {
                         <app-generaladdtocartbutton class="cart" (click)="addToCart(product.id)"  [buttonStyle]="addToCartButtonStyle" label="Add to Cart"/>
-                       }
+                    } @else if (loadingCart){
+                        <app-generaladdtocartbutton class="cart" [buttonStyle]="removeFromCartStyle" label="Removing from cart..."/>
+                    } @else if (inCartStatus){
+                        <app-generaladdtocartbutton class="cart" (click)="removeFromCart(product.id)"  [buttonStyle]="removeFromCartStyle" label="Remove from cart"/>
+                    }
                     <app-generalbuybutton (click)="buy(product.id)" label="Buy" [buttonStyle]="addBuyButtonStyle"/>
                 </div>
                 <div class="ratings">
-                    <app-ratings/>
+                    <app-ratings [reviews]="product.comments.length" [ratings]="product.rating"/>
                 </div>
             }
         </div>

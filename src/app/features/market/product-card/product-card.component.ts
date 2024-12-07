@@ -1,4 +1,4 @@
-import { Component, inject, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, inject, Input, Output } from '@angular/core';
 import { GeneralinpuOneComponent } from '../../components/generalinpu-one/generalinpu-one.component';
 import { GeneralAddToCartbuttonComponent } from "../components/generaladdtocartbutton/generaladdtocartbutton.component";
 import { GeneralbuybuttonComponent } from "../components/generalbuybutton/generalbuybutton.component";
@@ -19,7 +19,7 @@ import { AuthService } from '../../../services/auth/auth.service';
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css'
 })
-export class ProductCardComponent {
+export class ProductCardComponent implements AfterViewInit{
 
   @Input() product : any;
 
@@ -57,6 +57,21 @@ export class ProductCardComponent {
     'background-color': '#F5B000'
   }
 
+  removeFromCartStyle = {
+   
+    'height' : '2rem',
+    'width' : '100%',
+    'border' : '0',
+    'padding' : '0 10px',
+    'outline' : '0',
+    'font-size' : '14px',
+    'font-weight' : '500',
+    'gap' : '5px',
+    'color' : '#fff',
+    'cursor' : 'pointer',
+    'background-color': '#000'
+  }
+
   
   
   addBuyButtonStyle = {
@@ -70,6 +85,10 @@ export class ProductCardComponent {
     'color' : '#fff',
     'cursor' : 'pointer',
     'background-color': 'var(--primaryAccentColor)'
+  }
+
+  ngAfterViewInit(): void {
+    this.isInCart()
   }
 
   addToCart(itemId : string){
@@ -87,6 +106,7 @@ export class ProductCardComponent {
       this.cartService.addToCart(payload).subscribe({
         next: (n : any) => {
           this.loadingCart = false;
+          this.isInCart()
           this.toaster.success("Added to cart successfully!")
         }, 
         error: (e)=> {
@@ -101,6 +121,34 @@ export class ProductCardComponent {
     this.loadingCart = false;
     this.authService.loginDialog();
   }
+  }
+
+  removeFromCart(itemId : string) {
+    this.loadingCart = true;
+    const uid = sessionStorage.getItem("uid");
+    if(uid != null)
+      this.userService.getUser({Id: uid}).subscribe({
+    next: (n : any) => {
+      var payload :  CartItem = {
+        itemId: itemId,
+        cartId: n.cartId,
+        quantity: this.quantity
+      }
+      
+      this.cartService.removeFromCartWithCartId(itemId ,  n.cartId).subscribe({
+        next: (n : any) => {
+          this.loadingCart = false;
+          this.isInCart()
+          this.toaster.success("removed from cart successfully!")
+        }, 
+        error: (e)=> {
+          this.loadingCart = false;
+          this.toaster.show("error", e.message)
+        }
+       })
+     }
+  })
+
   }
 
   placeBid(itemId: string) {
@@ -169,6 +217,31 @@ export class ProductCardComponent {
       })
     } else {
       this.authService.loginDialog()
+    }
+  }
+
+  inCartStatus!: boolean;
+
+  isInCart(){
+
+    try {
+      const uid = sessionStorage.getItem("uid");
+      if(uid != null){
+        this.userService.getUser({Id :uid}).subscribe({
+          next: (n : any) => {
+            this.cartService.isInCart(n.cartId, this.product.id).subscribe({
+              next: (n : any) => {
+                this.inCartStatus = n.itemIsInCart;
+              },
+              error: (e) => {
+                
+              }
+            })
+          }
+        })
+      }
+    } catch (error) {
+      
     }
   }
 

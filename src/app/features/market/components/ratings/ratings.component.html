@@ -1,6 +1,4 @@
     <div class="ratings">
-        <span>5</span>
-        @for (item of ratings; track $index) {
-            <span class="material-symbols-outlined">star</span>
-        }
+        <p-rating [(ngModel)]="ratings" [readonly]="true" [cancel]="false" />
+        <span>{{reviews}} Reviews</span>
     </div>

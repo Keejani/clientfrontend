@@ -379,10 +379,10 @@
         flex-direction: column;
     }
 
-    .cart-buttons{
+    /* .cart-buttons{
         display: none;
-    }
-}
+    } \*/
+} 
 
 @media screen and  (min-width: 451px) and (max-width: 900px) {
 
@@ -401,9 +401,6 @@
         flex-direction: column;
     }
 
-    .cart-buttons{
-        display: none;
-    }
 }
 
 @media screen and (max-width: 600px) {

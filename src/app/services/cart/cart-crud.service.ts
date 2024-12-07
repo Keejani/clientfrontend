@@ -40,6 +40,15 @@ export class CartCrudService {
      })
   }
 
+  isInCart(cartId : string, itemId : string){
+     return this.http.get(`${API_BASE_URL}/api/v1/cart/in-cart`, {
+      params: {
+        cartId: cartId,
+        itemId : itemId 
+      },
+     })
+  }
+
   addToCart(cartItem: CartItem): Observable<any> {
     return this.http.post(`${API_BASE_URL}/api/v1/cart/addToCart`, cartItem);
   }
@@ -48,10 +57,21 @@ export class CartCrudService {
     return this.http.post(`${API_BASE_URL}/api/v1/vendor/request`, cartItem);
   }
 
-  removeFromCart(cartItem: string): Observable<any> {
+  removeFromCart(itemId: any): Observable<any> {
+    console.log();
     return this.http.delete(`${API_BASE_URL}/api/v1/cart/removeFromCart`, { params: {
-      id : cartItem
-    } });
+      itemId : itemId
+    } 
+  });
+  }
+ 
+  removeFromCartWithCartId(itemId : string, cartId : string): Observable<any> {
+    console.log();
+    return this.http.delete(`${API_BASE_URL}/api/v1/cart/removeFromCartWithCartId`, { params: {
+      itemId : itemId,
+      cartId : cartId
+    } 
+  });
   }
   
 }

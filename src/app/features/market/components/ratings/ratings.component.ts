@@ -1,20 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RatingModule } from 'primeng/rating';
 
 @Component({
   selector: 'app-ratings',
   standalone: true,
-  imports: [],
+  imports: [RatingModule, FormsModule],
   templateUrl: './ratings.component.html',
   styleUrl: './ratings.component.css'
 })
 export class RatingsComponent {
 
-   ratings : Array<any> = [
-    {},
-    {},
-    {},
-    {},
-    {},
-   ];
+   @Input() ratings = 0;
+   @Input() reviews = 0;
 
 }

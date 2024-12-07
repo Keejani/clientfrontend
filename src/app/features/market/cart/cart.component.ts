@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
 import { TopPanelComponent } from "../components/top-panel/top-panel.component";
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
@@ -13,11 +13,13 @@ import { forkJoin, map, switchMap } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { CartItem } from '../../../utils/cart.interface';
 import { FormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, FormsModule, TopPanelComponent, ProductsFetchComponent, SubTotalComponent, GeneralbuttonComponent, FooterComponent],
+  imports: [NavbarComponent, CommonModule, RouterLink, FormsModule, TopPanelComponent, ProductsFetchComponent, SubTotalComponent, GeneralbuttonComponent, FooterComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -34,7 +36,7 @@ export class CartComponent implements OnInit{
     'color' : '#fff',
     'font-weight' : '600',
   }
-  isLoading = false;
+  isLoading = signal(false);
   user = inject(UserCrudService);
   cartService = inject(CartCrudService);
   userData: any;
@@ -42,7 +44,7 @@ export class CartComponent implements OnInit{
   cartItemWithItemName: any = [];
   auth = inject(AuthService);
 
-  toaster = inject(CustomToasterService)
+  toaster = inject(ToastrService)
   loadingCart = false;
   userService = inject(UserCrudService);
 
@@ -51,7 +53,7 @@ export class CartComponent implements OnInit{
   }
   
   getUserData() {
-    this.isLoading = true;
+    this.isLoading.set(true);
   
     const uid = sessionStorage.getItem("uid");
     if (uid) {
@@ -71,7 +73,8 @@ export class CartComponent implements OnInit{
                   }))
                 )
               );
-  
+              this.isLoading.set(false);
+
               // Wait for all product details to load
               return forkJoin(productObservables);
             })
@@ -79,33 +82,38 @@ export class CartComponent implements OnInit{
         )
       ).subscribe({
         next: (cartItemsWithDetails: any) => {
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.cartItemWithItemName = cartItemsWithDetails;
           console.log("Data", this.cartItemWithItemName);
           this.auth.refreshToken();
         },
         error: (error: any) => {
-          this.isLoading = false;
+          this.isLoading.set(false);
           this.toaster.show("error", "Failed to load user data or cart items!");
           this.auth.refreshToken();
         }
       });
     } else {
-      this.isLoading = false;
+      this.isLoading.set(false);
     }
   }
   
-  removeFromCart(itemId : string){
+  removeFromCart(itemId : string) {
     this.loadingCart = true;
     const uid = sessionStorage.getItem("uid");
     if(uid != null)
       this.userService.getUser({Id: uid}).subscribe({
     next: (n : any) => {
+      var payload :  CartItem = {
+        itemId: itemId,
+        cartId: n.cartId,
+      }
+      
       this.cartService.removeFromCart(itemId).subscribe({
         next: (n : any) => {
           this.loadingCart = false;
-          this.toaster.show("success", n.message)
-          this.toaster.show("success", "Added to cart successfully!")
+          this.getUserData()
+          this.toaster.success("removed from cart successfully!")
         }, 
         error: (e)=> {
           this.loadingCart = false;
@@ -114,6 +122,7 @@ export class CartComponent implements OnInit{
        })
      }
   })
+
   }
 
   selectedCartItem : any[] = [];
