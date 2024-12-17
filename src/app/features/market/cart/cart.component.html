@@ -41,7 +41,7 @@
                                 <div class="unit">
                                     <span class="ton">per {{item.item.measure}}</span>
                                     <!-- <span class="unite">unit</span> -->
-                                    <span class="quantity">quantity: <input (click)="updateSelectedItems()" [value]="item.cartItem.quantity" type="number"></span>
+                                    <span class="quantity">quantity: <input (input)="updateSelectedItems()" appNumbersOnly [(ngModel)]="item.cartItem.quantity" [value]="item.cartItem.quantity" type="number"></span>
                                 </div>
                             </div>
                             @if(loadingCart){

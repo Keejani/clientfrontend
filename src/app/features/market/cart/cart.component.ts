@@ -15,11 +15,12 @@ import { CartItem } from '../../../utils/cart.interface';
 import { FormsModule } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { RouterLink } from '@angular/router';
+import { NumbersOnlyDirective } from '../../../utils/directives/numbers-only-directive';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [NavbarComponent, CommonModule, RouterLink, FormsModule, TopPanelComponent, ProductsFetchComponent, SubTotalComponent, GeneralbuttonComponent, FooterComponent],
+  imports: [NavbarComponent, CommonModule, NumbersOnlyDirective, RouterLink, FormsModule, TopPanelComponent, ProductsFetchComponent, SubTotalComponent, GeneralbuttonComponent, FooterComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css'
 })
@@ -128,7 +129,8 @@ export class CartComponent implements OnInit{
   selectedCartItem : any[] = [];
 
   selectCartItem(item : any){
-    this.selectedCartItem.push(item)
+    this.selectedCartItem.push(item);
+    localStorage.setItem('cart', JSON.stringify(this.selectedCartItem))
   }
 
   updateSelectedItems() {

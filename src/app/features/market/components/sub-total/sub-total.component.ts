@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { GeneralbuttonComponent } from "../../../components/generalbutton/generalbutton.component";
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sub-total',
@@ -12,6 +13,8 @@ import { CommonModule } from '@angular/common';
 export class SubTotalComponent {
 
   @Input() cartItems! : any[];
+
+  router = inject(Router);
 
   buttonStyle = {
     'width' : '100%',
@@ -45,6 +48,11 @@ export class SubTotalComponent {
     
     // Calculate total
     this.total = this.subtotal + this.serviceCharges + this.tax;
+  }
+
+  checkOut(){
+    localStorage.setItem('cart', JSON.stringify(this.cartItems));
+    this.router.navigate(['/payment'])
   }
 
 }

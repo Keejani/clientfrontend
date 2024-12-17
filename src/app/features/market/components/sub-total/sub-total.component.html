@@ -11,7 +11,7 @@
             @for (item of cartItems; track $index) {
                 <div class="card">
                     <div class="image">
-                                <img src="https://img.freepik.com/premium-photo/stack-old-metal-pieces-industrial-concept-suitable-backgrounds-recycling-themes_153912-48479.jpg?ga=GA1.2.1900006000.1721461402&semt=ais_hybrid" alt="">
+                                <img [src]="item.item.pictureUrl[0].imageUrl" alt="">
                                 <!-- <img src="" alt=""> -->
                         <div class="name">
                             <span class="word-shorten">{{item.item.name}}</span>
@@ -20,7 +20,7 @@
                     </div>
                     <div class="price">
                         <span>Price</span>
-                        <span>{{item.item.price}}</span>
+                        <span>{{item.item.price | currency}}</span>
                     </div>
                 </div>
                }
@@ -51,6 +51,6 @@
         </div>
 
 
-        <app-generalbutton label="Checkout" [buttonStyle]="buttonStyle"/>
+        <app-generalbutton (click)="checkOut()" label="Checkout" [buttonStyle]="buttonStyle"/>
     </div>
 </div>
