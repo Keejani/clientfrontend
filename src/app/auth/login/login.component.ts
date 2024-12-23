@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 
-import { GeneralinpuOneComponent } from '../components/generalinpu-one/generalinpu-one.component';
-import { GeneralbuttonComponent } from '../components/generalbutton/generalbutton.component';
-import { GeneralOAuthButtonComponent } from '../components/general-oauth-button/general-oauth-button.component';
+import { GeneralinpuOneComponent } from '../../features/components/generalinpu-one/generalinpu-one.component';
+import { GeneralbuttonComponent } from '../../features/components/generalbutton/generalbutton.component';
+import { GeneralOAuthButtonComponent } from '../../features/components/general-oauth-button/general-oauth-button.component';
 import { FooterComponent } from "../../core/components/footer/footer.component";
 
 import { AuthService } from '../../services/authentication/auth.service';
