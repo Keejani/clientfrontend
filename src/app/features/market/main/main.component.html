@@ -1,5 +1,5 @@
 <app-navbar/>
-<app-top-panel/>
+<app-top-panel [isNew]="cartUpdated()"/>
 <div class="main max-width">
     <div class="container">
         <div class="filter">
@@ -24,7 +24,7 @@
                 </div>
             } @else {     
               @for (item of Items; track $index) {
-                 <app-product-card [product]="item"/>
+                 <app-product-card [product]="item" (isNew)="changedCartItems($event)"/>
               }
             }
             <!-- <app-products-fetch class="width"/> -->

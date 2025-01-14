@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, Input, Output } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { GeneralinpuOneComponent } from '../../components/generalinpu-one/generalinpu-one.component';
 import { GeneralAddToCartbuttonComponent } from "../components/generaladdtocartbutton/generaladdtocartbutton.component";
 import { GeneralbuybuttonComponent } from "../components/generalbuybutton/generalbuybutton.component";
@@ -22,6 +22,7 @@ import { AuthService } from '../../../services/auth/auth.service';
 export class ProductCardComponent implements AfterViewInit{
 
   @Input() product : any;
+  @Output() isNew :  EventEmitter<boolean> = new EventEmitter<boolean>();
 
   cartService = inject(CartCrudService)
   toaster = inject(ToastrService)

@@ -51,8 +51,12 @@ export class SubTotalComponent {
   }
 
   checkOut(){
-    localStorage.setItem('cart', JSON.stringify(this.cartItems));
-    this.router.navigate(['/payment'])
+    if(this.cartItems.length > 0){
+      localStorage.setItem('cart', JSON.stringify(this.cartItems));
+      this.router.navigate(['/payment'])
+    } else {
+      alert('Please add items to cart before checking out')
+    }
   }
 
 }

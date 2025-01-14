@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { NavbarComponent } from "../../../core/components/navbar/navbar.component";
 import { ProductsFetchComponent } from "../products-fetch/products-fetch.component";
 import { TopPanelComponent } from "../components/top-panel/top-panel.component";
@@ -33,6 +33,8 @@ export class MainComponent implements OnInit{
   bid = 0;
   bidError = "";
 
+  cartUpdated = signal(false);
+
   ngOnInit(): void {
     this.getAllItems()
   }
@@ -47,9 +49,12 @@ export class MainComponent implements OnInit{
         this.itemsLoading = false;
         this.Items = n
       }
-    })
+    });
   }
 
+  changedCartItems(event : any){
+    this.cartUpdated.set(event);
+  }
 
 
 }

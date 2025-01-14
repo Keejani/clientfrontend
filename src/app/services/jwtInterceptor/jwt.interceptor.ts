@@ -10,6 +10,10 @@ if (req.headers.get('X-Skip-JWT-Interceptor')) {
   return next(req);
 }
 
+if(req.url.includes("api.paystack.co")){
+  return next(req);
+}
+
 
 const authService = inject(AuthService)
 

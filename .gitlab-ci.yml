@@ -7,10 +7,10 @@ stages:
 
 variables:
   SSH_USER: ubuntu
-  # SERVER_IP: 51.20.93.126
-  SERVER_IP: 54.166.222.34
-  DEPLOY_PATH: /home/ubuntu/keejani-client
-  PRIVATE_KEY_PATH:  /builds/devs1632222/Keejani/my-gcp-key-dv
+  SERVER_IP: 51.20.93.126
+  # SERVER_IP: 54.166.222.34
+  DEPLOY_PATH: /home/ubuntu/buyer
+  PRIVATE_KEY_PATH:  /builds/devs1632222/Keejani/my-gcp-key
 
 cache:
   paths:

@@ -13,7 +13,9 @@ export class TopPanelComponent implements AfterViewInit , OnInit{
 
   @Input() bids! : number;
 
-  cartService = inject(CartCrudService)
+  cartService = inject(CartCrudService);
+
+  @Input() isNew = false;
 
   getAllBids(){
     const userId = sessionStorage.getItem('uid');

@@ -1,4 +1,9 @@
-<div class="min-h-screen flex items-center justify-center p-4">
+@if(loadingPaymentAndOrder()){
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+}
+
+@if(true){
+  <div class="min-h-screen flex items-center justify-center p-4">
     <div class="w-full max-w-[80rem] bg-white p-6 md:p-10">
       <div class="text-center mb-8">
         <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
@@ -71,6 +76,7 @@
                    hover:bg-[var(--accentDark)] transition duration-300 
                    disabled:bg-gray-400 disabled:cursor-not-allowed"
             [disabled]="items.length === 0"
+            (click)="makePayment()"
           >
             Pay {{calculateTotal().toFixed(2) | currency}}
           </button>
@@ -79,6 +85,7 @@
                    hover:bg-red-800 transition duration-300 
                    disabled:bg-gray-400 disabled:cursor-not-allowed"
             [disabled]="items.length === 0"
+            (click)="cancel()"
           >
             Cancel
           </button>
@@ -86,3 +93,8 @@
       </div>
     </div>
   </div>
+} @else if(false) {
+  <div class="verifying">
+       <h2>Verifying your payment</h2>
+  </div>
+}

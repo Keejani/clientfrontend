@@ -3,3 +3,12 @@
        flex-direction: column;
     }
 }
+
+
+::ng-deep .mdc-linear-progress__buffer-bar {
+    background-color: #77ae001b !important;
+}
+
+::ng-deep .mdc-linear-progress__bar-inner {
+    border-color: #77AE00 !important;
+}

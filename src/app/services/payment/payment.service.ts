@@ -11,8 +11,7 @@ export class PaymentService {
   constructor(private http : HttpClient) {
     this.headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-Skip-JWT-Interceptor': 'true',
-      'Authorization' : 'Bearer sk_test_c6dc8df7551b3851030c53c823dda902cd35fbbf'
+      'Authorization' : 'Bearer sk_test_27d1f7bc90ff356ce02aea34a02781855849a183'
     });
   }
 
