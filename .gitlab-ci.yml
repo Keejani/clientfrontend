@@ -2,7 +2,6 @@ image: node:20-alpine
 
 stages:
   - install_dependencies
-  - build
   - deploy
 
 variables:
@@ -19,15 +18,11 @@ install_dependencies:
   script:
     - npm ci --force
 
-build:
-  stage: build
-  script:
-    - npm run build
-    - apk add --no-cache openssh-client
-
 deploy:
   stage: deploy
   script:
+    - npm run build
+    - apk add --no-cache openssh-client
     # Ensure SSH client is available
     - apk add --no-cache openssh-client
 
