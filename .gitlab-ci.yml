@@ -5,7 +5,7 @@ stages:
   - deploy
 
 variables:
-  SSH_USER: ubuntu
+  SSH_USER: pandit
   SERVER_IP: 213.130.147.149
   DEPLOY_PATH: /home/pandit/devlaps-client-projects/keejani/client
 
