@@ -44,5 +44,5 @@ deploy:
     # Restart the server application
     - ssh -i /tmp/private_key $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"
 
-    # Clean up private key
+    # Clean up private 
     - rm -f /tmp/private_key
