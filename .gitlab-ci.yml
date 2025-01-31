@@ -1,48 +1,48 @@
 image: node:20-alpine
 
 stages:
-  - install_dependencies
   - deploy
 
 variables:
   SSH_USER: pandit
   SERVER_IP: 213.130.147.149
+  PRIVATE_KEY_PATH: /builds/pandit.alabi/keejani-client/my-gcp-key
   DEPLOY_PATH: /home/pandit/devlaps-client-projects/keejani/client
 
 cache:
   paths:
     - node_modules/
 
-install_dependencies:
-  stage: install_dependencies
-  script:
-    - npm ci --force
-
 deploy:
   stage: deploy
   script:
+    # Install dependencies and build the project
+    - npm i --force
     - npm run build
-    - apk add --no-cache openssh-client
-    # Ensure SSH client is available
+
+    # Install SSH client
     - apk add --no-cache openssh-client
 
-    # Create SSH directory and known_hosts file
+    # Ensure SSH directory exists
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
 
-    # Add server's SSH host key to known_hosts
+    # Add server to known_hosts
     - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
     - chmod 644 ~/.ssh/known_hosts
 
-    # Write the private key from the environment variable
-    - echo "$DEV_PRIVATE_KEY" > /tmp/private_key
-    - chmod 600 /tmp/private_key
+    # Set up SSH
+    - apk add --no-cache openssh-client
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan -H $SERVER_IP >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - chmod 400 $PRIVATE_KEY_PATH
+    - eval $(ssh-agent -s)
 
-    # Copy build files to the server
-    - scp -i /tmp/private_key -r "$(pwd)"/dist/keejani-client/browser $SSH_USER@$SERVER_IP:$DEPLOY_PATH
+    # Clean existing deployment and copy new files
+    - ssh -i $PRIVATE_KEY_PATH $SSH_USER@$SERVER_IP "rm -rf $DEPLOY_PATH/*"
+    - scp -r -i $PRIVATE_KEY_PATH dist/* $SSH_USER@$SERVER_IP:$DEPLOY_PATH/
 
-    # Restart the server application
-    - ssh -i /tmp/private_key $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"
 
-    # Clean up private 
-    - rm -f /tmp/private_key
+    - ssh -i $PRIVATE_KEY_PATH $SSH_USER@$SERVER_IP "sudo systemctl restart nginx"
