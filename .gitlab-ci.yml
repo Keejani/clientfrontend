@@ -6,7 +6,7 @@ stages:
 variables:
   SSH_USER: pandit
   SERVER_IP: 213.130.147.149
-  PRIVATE_KEY_PATH: /builds/pandit.alabi/keejani-client/my-gcp-key
+  PRIVATE_KEY_PATH:  /builds/devs1632222/Keejani/my-gcp-key
   DEPLOY_PATH: /home/pandit/devlaps-client-projects/keejani/client
 
 cache:
